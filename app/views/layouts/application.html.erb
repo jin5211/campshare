@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Protospace</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="inner">
+        <div class="nav">
+          <div class="nav__left">
+            <%= link_to "CampShare" , root_path , class: :logo %>
+          </div>
+          <%# ログインしているときは以下を表示するようにしましょう %>
+            <%# <div class="nav__right"> %>
+              <%# <%= link_to "ログアウト", root_path, class: :nav__logout %>
+              <%# <%= link_to "New Proto", root_path, class: :nav__btn %>
+            <%# </div> %>
+          <%# // ログインしているときは上記を表示するようにしましょう %>
+          <%# ログインしていないときは以下を表示するようにしましょう %>
+            <div class="nav__right">
+              <%= link_to "ログイン", root_path, class: :nav__btn %>
+              <%= link_to "新規登録", root_path, class: :nav__btn %>
+            </div>
+          <%# // ログインしていないときは上記を表示するようにしましょう %>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+    <footer class="footer">
+      <p class="copyright">Copyright © CampShare All rights reserved.</p>
+    </footer>
+  </body>
+</html>

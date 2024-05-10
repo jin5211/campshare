@@ -1,0 +1,25 @@
+<%= form_with model: モデル名, local: true do |f|%>
+  <div class="field">
+    <%= f.label :hoge, "プロトタイプの名称" %><br />
+    <%= f.text_field :hoge, id:"prototype_title" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hoge, "キャッチコピー" %><br />
+    <%= f.text_area :hoge, class: :form__text, id:"prototype_catch_copy" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hoge, "コンセプト" %><br />
+    <%= f.text_area :hoge, class: :form__text, id:"prototype_concept" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hoge, "プロトタイプの画像" %><br />
+    <%= f.file_field :hoge, id:"prototype_image" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>
