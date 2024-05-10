@@ -7,7 +7,10 @@
       </div>
     <% end %>
     <div class="card__wrapper">
-      <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+      <%# @blogs.each do |blog| %>
+        <%= render partial: "blog" %>
+        <%#= render partial: "blog", locals: { blog: blog } %>
+      <%#<% end %>
     </div>
   </div>
 </main>
