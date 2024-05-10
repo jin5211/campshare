@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Protospace</title>
+    <title>CampShare</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -18,18 +18,17 @@
           <div class="nav__left">
             <%= link_to "CampShare" , root_path , class: :logo %>
           </div>
-          <%# ログインしているときは以下を表示するようにしましょう %>
-            <%# <div class="nav__right"> %>
-              <%# <%= link_to "ログアウト", root_path, class: :nav__logout %>
-              <%# <%= link_to "New Proto", root_path, class: :nav__btn %>
-            <%# </div> %>
-          <%# // ログインしているときは上記を表示するようにしましょう %>
-          <%# ログインしていないときは以下を表示するようにしましょう %>
+            <% if user_signed_in? %>
             <div class="nav__right">
-              <%= link_to "ログイン", root_path, class: :nav__btn %>
-              <%= link_to "新規登録", root_path, class: :nav__btn %>
+              <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
+              <%= link_to "New Proto", "#", class: :nav__btn %>
             </div>
-          <%# // ログインしていないときは上記を表示するようにしましょう %>
+            <% else %>
+            <div class="nav__right">
+              <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
+              <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+            </div>
+            <% end %>
         </div>
       </div>
     </header>
