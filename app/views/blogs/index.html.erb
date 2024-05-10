@@ -1,13 +1,16 @@
 <main class="main">
   <div class="inner">
-    <%# ログインしているときは以下を表示する %>
-      <%# <div class="greeting"> %>
-        <%# こんにちは、 %>
-        <%# <%= link_to "ユーザー名さん", root_path, class: :greeting__link%>
-      <%# </div> %>
-    <%# // ログインしているときは上記を表示する %>
+    <% if user_signed_in? %>
+    <div class="greeting">
+      <%= "こんにちは、" %>
+      <%= link_to "#{current_user.name}さん", root_path, class: :greeting__link%>
+      </div>
+    <% end %>
     <div class="card__wrapper">
-      <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+      <%# @blogs.each do |blog| %>
+        <%= render partial: "blog" %>
+        <%#= render partial: "blog", locals: { blog: blog } %>
+      <%#<% end %>
     </div>
   </div>
 </main>

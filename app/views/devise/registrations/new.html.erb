@@ -1,0 +1,37 @@
+<div class="main">
+  <div class="inner">
+    <div class="form__wrapper">
+      <h2 class="page-heading">ユーザー新規登録</h2>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+
+        <div class="field">
+          <%= f.label :email, "メールアドレス" , class: "form-label" %><br />
+          <%= f.email_field :email, class: 'form-control', id:"user_email", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, "パスワード（6文字以上）", class: "form-label" %><br />
+          <%= f.password_field :password, class: 'form-control', id:"user_password", placeholder: "Password",autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation, "パスワード再入力", class: "form-label" %><br />
+          <%= f.password_field :password_confirmation, class: 'form-control',id:"user_password_confirmation", placeholder: "Password Confirmation", autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :name, "ユーザー名", class: "form-label" %><br />
+          <%= f.text_field :name, class: 'form-control', id:"user_name", placeholder: "Name"%>
+        </div>
+        <div class="field">
+          <%= f.label :profile, "自己紹介", class: "form-label" %><br />
+          <%= f.text_area :profile, class: 'form-control', rows: 10, id:"user_profile", placeholder: "はじめまして！キャンプ太郎です。キャンプ歴5年のソロキャンパーです。富士山麓のキャンプ場で焚き火や料理、DIYを楽しんでいます。このブログでは、キャンプの魅力を多くの人に伝えたいと思っています。" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "新規登録", class: :form__btn  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
