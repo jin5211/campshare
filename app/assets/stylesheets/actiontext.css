@@ -29,3 +29,9 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+trix-editor {
+  min-height: 20em;
+  max-height: 20em;
+  overflow-y: auto;
+}

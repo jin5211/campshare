@@ -3,7 +3,7 @@
 <% if user_signed_in? %>
   <div class="greeting fs-3">
     <%= "こんにちは、" %>
-      <%= link_to "#{current_user.name}さん", '#', class: :greeting__link %>
+      <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link %>
     </div>
   <% end %>
 
@@ -36,7 +36,7 @@
           <div class="card-body d-flex justify-content-between">
             <h5 class="card-title">
               Title:<%= blog.title %><br>
-              <%= link_to "by #{blog.user.name}", "#" %>
+              <%= link_to "by #{blog.user.name}", user_path(blog.user) %>
             </h5>
               <p class="ml-5"><%= link_to "Show", blog ,  class: "btn btn-success mt-2"%></p>
           </div>

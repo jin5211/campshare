@@ -9,10 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   </head>
 
   <body>
-    <header class="header navbar-expand-lg navbar-light bg-dark py-3 navbar-fixed-top">
+    <header class="header navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
       <div class="inner">
         <div class="nav">
           <div class="nav__left">
@@ -32,8 +34,8 @@
         </div>
       </div>
     </header>
-    <div class="container mt-5 mb-5">
-      <%= yield %>
+    <div class="container mt-5 mb-5 ">
+      <%= yield %><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     </div>
     <footer class="footer fixed-bottom">
       <p class="copyright">Copyright © CampShare All rights reserved.</p>

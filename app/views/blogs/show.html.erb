@@ -18,9 +18,34 @@
 </div>
 <% end %>
 
-<div class="container mb-5">
+<div class="container mb-3">
   <p class="h3 mb-5">
     Content:
   </p>
   <%= @blog.content %>
+</div>
+
+<div class="container mb-5">
+  <% if user_signed_in? %>
+    <%= form_with(model: [@blog, @comment], local: true) do |form| %>
+      <%= form.text_area :text, placeholder: "コメントする", rows: "5", class: "form-control mb-3" %>
+      <%= form.submit "SEND", class: "btn btn-outline-primary mb-3"  %>
+    <% end %>
+  <% else %>
+    <strong><p class="mb-5">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+  <% end %>
+</div>
+
+<div class="card mb-5" style="width: 100%;">
+  <div class="card-body">
+    <h3 class="card-title mb-3">コメント一覧</h3>
+    <div class="container mb-5">
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= link_to comment.user.name, "#" %>：</strong>
+          <%= comment.text %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
