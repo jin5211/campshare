@@ -1,8 +1,9 @@
-<div class="main">
-  <div class="inner">
-    <div class="form__wrapper">
-      <h2 class="page-heading">新規プロトタイプ投稿</h2>
-        <%# 部分テンプレートでフォームを表示する %>
-    </div>
-  </div>
+<h1>New blog</h1>
+
+<%= render "form", blog: @blog %>
+
+<br>
+
+<div>
+  <%= link_to "Back to blogs", blogs_path, class: "btn btn-primary" %>
 </div>

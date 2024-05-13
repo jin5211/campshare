@@ -1,5 +1,4 @@
 @import "bootstrap";
-
 /* リセットCSS */
 * {
   box-sizing: border-box;
@@ -17,10 +16,10 @@ div {
   padding: 0;
 }
 
-body {
-  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN W3", sans-serif;
-  color: #3b4043;
-}
+// body {
+//   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN W3", sans-serif;
+//   color: #3b4043;
+// }
 
 li {
   list-style: none;

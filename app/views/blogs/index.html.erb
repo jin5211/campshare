@@ -1,16 +1,50 @@
-<main class="main">
-  <div class="inner">
-    <% if user_signed_in? %>
-    <div class="greeting">
-      <%= "こんにちは、" %>
-      <%= link_to "#{current_user.name}さん", root_path, class: :greeting__link%>
+<p style="color: green"><%= notice %></p>
+
+<% if user_signed_in? %>
+  <div class="greeting fs-3">
+    <%= "こんにちは、" %>
+      <%= link_to "#{current_user.name}さん", '#', class: :greeting__link %>
+    </div>
+  <% end %>
+
+
+<p class="h1 mt-2 mb-5">Blogs</p>
+
+<% if Blog.count == 0 %>
+
+<div class="contaier">
+  <div id="blogs">
+    <div class="card w-100">
+      <div class="card-body d-flex justify-content-between">
+        <h5 class="card-title">当ブログ「CampShare」はキャンプ・アウトドア関係の商品レビューや、キャンプで役立つ小ネタ、キャンプ飯のレシピを中心としたブログです。キャンプ体験を投稿してね！</h5>
+        <p class="ml-5"><%= link_to "Show", "#" ,  class: "btn btn-success mt-2"%></p>
       </div>
-    <% end %>
-    <div class="card__wrapper">
-      <%# @blogs.each do |blog| %>
-        <%= render partial: "blog" %>
-        <%#= render partial: "blog", locals: { blog: blog } %>
-      <%#<% end %>
     </div>
   </div>
-</main>
+</div>
+
+<% end %>
+
+<% if Blog.count > 0 %>
+
+<div class="contaier">
+  <div id="blogs">
+    <% @blogs.each do |blog| %>
+    <div class="row">
+      <div class="col ">
+        <div class="card w-100">
+          <div class="card-body d-flex justify-content-between">
+            <h5 class="card-title">
+              Title:<%= blog.title %><br>
+              <%= link_to "by #{blog.user.name}", "#" %>
+            </h5>
+              <p class="ml-5"><%= link_to "Show", blog ,  class: "btn btn-success mt-2"%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<% end %>

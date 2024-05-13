@@ -1,47 +1,7 @@
-<%#<div class="card">
-  <%#<%= link_to image_tag("プロトタイプの画像", class: :card__img ), root_path%>
-  <%#<div class="card__body">
-    <%#<%= link_to "プロトタイプのタイトル", root_path, class: :card__title%>
-    <%#<p class="card__summary">
-      <%= "プロトタイプのキャッチコピー" %>
-    <%#</p>
-    <%#<%= link_to "by プロトタイプの投稿者名", root_path, class: :card__user %>
-  <%#</div>
-<%#</div>
-<%# %>
-<!-- Blog section -->
-    <section id="blog" class="bg-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 mx-auto text-center">
-            <h6 class="text-primary">Blog</h6>
-            <h1>Latest News Form The Blog</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis eligendi illum sunt cumque numquam quasi?</p>
-          </div>
-        </div>
+<div id="<%= dom_id blog %>">
+  <p>
+    <strong>Title:</strong>
+    <%= blog.title %>
+  </p>
 
-        <div class="row g-20">
-          <div class="col-md-4">
-            <div class="blog-card card-effect">
-              <%= image_tag 'blog1.jpg' %>
-              <h5 class="mb-0 mt-4"><a href="#">Designing smart and slick Bootstrap 5</a></h5>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsam?</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="blog-card card-effect">
-              <%= image_tag 'blog2.jpg' %>
-              <h5 class="mb-0 mt-4"><a href="#">Designing smart and slick Bootstrap 5</a></h5>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsam?</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="blog-card card-effect">
-              <%= image_tag 'blog3.jpg' %>
-              <h5 class="mb-0 mt-4"><a href="#">Designing smart and slick Bootstrap 5</a></h5>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsam?</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+</div>

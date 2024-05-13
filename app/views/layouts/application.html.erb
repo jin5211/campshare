@@ -7,10 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -23,7 +21,7 @@
           <% if user_signed_in? %>
           <div class="nav__right">
             <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
-            <%= link_to "New Proto", "#", class: :nav__btn %>
+            <%= link_to "NewBlog", new_blog_path, class: :nav__btn %>
           </div>
           <% else %>
           <div class="nav__right">
@@ -34,7 +32,9 @@
         </div>
       </div>
     </header>
-    <%= yield %>
+    <div class="container mt-5 mb-5">
+      <%= yield %>
+    </div>
     <footer class="footer fixed-bottom">
       <p class="copyright">Copyright © CampShare All rights reserved.</p>
     </footer>
