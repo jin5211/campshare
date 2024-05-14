@@ -86,3 +86,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails'
 
 gem 'omniauth', '~> 1.9.1'
+
+gem 'active_hash'

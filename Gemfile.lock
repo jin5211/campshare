@@ -46,6 +46,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_hash (3.3.1)
+      activesupport (>= 5.0.0)
     activejob (7.0.8.1)
       activesupport (= 7.0.8.1)
       globalid (>= 0.3.6)
@@ -282,8 +284,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2024.1)
-      tzinfo (>= 1.0.0)
     uri (0.13.0)
     version_gem (1.1.4)
     warden (1.2.9)
@@ -309,6 +309,7 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
+  active_hash
   bootsnap
   bootstrap (~> 5.2.3)
   capybara
