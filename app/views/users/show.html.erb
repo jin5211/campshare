@@ -1,0 +1,43 @@
+<div class="main">
+  <div class="inner">
+    <div class="user__wrapper">
+      <h2 class="page-heading">
+        <%= "#{@user.name}さんの情報"%>
+      </h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table__col1">名前</th>
+            <td class="table__col2"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th class="table__col1">プロフィール</th>
+            <td class="table__col2"><%= @user.profile %></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="page-heading">
+        <%= "#{@user.name}さんのBlog"%>
+      </h2>
+      <div class="contaier">
+        <div id="blogs">
+          <% @user.blogs.each do |blog| %>
+          <div class="row">
+            <div class="col ">
+              <div class="card w-100">
+                <div class="card-body d-flex justify-content-between">
+                  <h5 class="card-title">
+                    Title:<%= blog.title %><br>
+                    <%= link_to "by #{blog.user.name}", user_path(@user) %>
+                  </h5>
+                    <p class="ml-5"><%= link_to "Show", blog ,  class: "btn btn-success mt-2"%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

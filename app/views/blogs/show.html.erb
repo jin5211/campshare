@@ -1,54 +1,51 @@
-<main class="main">
-  <div class="inner">
-    <div class="prototype__wrapper">
-      <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
-      </p>
-      <%= link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
-        <div class="prototype__manage">
-          <%= link_to "編集する", root_path, class: :prototype__btn %>
-          <%= link_to "削除する", root_path, class: :prototype__btn %>
-        </div>
-      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
-      <div class="prototype__image">
-        <%= image_tag "プロトタイプの画像" %>
-      </div>
-      <div class="prototype__body">
-        <div class="prototype__detail">
-          <p class="detail__title">キャッチコピー</p>
-          <p class="detail__message">
-            <%= "プロトタイプのキャッチコピー" %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">コンセプト</p>
-          <p class="detail__message">
-            <%= "プロトタイプのコンセプト" %>
-          </p>
-        </div>
-      </div>
-      <div class="prototype__comments">
-        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-          <%# <%= form_with model: モデル名,local: true do |f|%>
-            <div class="field">
-              <%# <%= f.label :hoge, "コメント" %><br />
-              <%# <%= f.text_field :hoge, id:"comment_content" %>
-            </div>
-            <div class="actions">
-              <%# <%= f.submit "送信する", class: :form__btn  %>
-            </div>
-          <%# <% end %>
-        <%# // ログインしているユーザーには上記を表示する %>
-        <ul class="comments_lists">
-          <%# 投稿に紐づくコメントを一覧する処理を記述する %>
-            <li class="comments_list">
-              <%# <%= " コメントのテキスト "%>
-              <%# <%= link_to "（ ユーザー名 ）", root_path, class: :comment_user %>
-            </li>
-          <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
-        </ul>
-      </div>
+<div class="container text-center mb-5">
+  <p class="h2 text-decoration-underline mb-2"><%= @blog.title %></p>
+  <p class="h3 text-decoration-underline">
+    <%= link_to "by #{@blog.user.name}", "#" %>
+  </p>
+</div>
+
+<% if current_user == @blog.user%>
+<div class="container mt-3 mb3 ">
+  <div class="row justify-content-center">
+    <div class="col-md-1">
+      <%= link_to "編集", edit_blog_path(@blog), class: "btn btn-outline-primary" %>
+    </div>
+    <div class="col-md-1">
+      <%= button_to "削除", @blog, method: :delete ,  class: "btn btn-outline-danger" %>
     </div>
   </div>
-</main>
+</div>
+<% end %>
+
+<div class="container mb-3">
+  <p class="h3 mb-5">
+    Content:
+  </p>
+  <%= @blog.content %>
+</div>
+
+<div class="container mb-5">
+  <% if user_signed_in? %>
+    <%= form_with(model: [@blog, @comment], local: true) do |form| %>
+      <%= form.text_area :text, placeholder: "コメントする", rows: "5", class: "form-control mb-3" %>
+      <%= form.submit "SEND", class: "btn btn-outline-primary mb-3"  %>
+    <% end %>
+  <% else %>
+    <strong><p class="mb-5">※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+  <% end %>
+</div>
+
+<div class="card mb-5" style="width: 100%;">
+  <div class="card-body">
+    <h3 class="card-title mb-3">コメント一覧</h3>
+    <div class="container mb-5">
+      <% @comments.each do |comment| %>
+        <p>
+          <strong><%= link_to comment.user.name, "#" %>：</strong>
+          <%= comment.text %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
