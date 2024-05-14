@@ -79,3 +79,10 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
 gem 'pry-rails'
+
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
+
+gem 'dotenv-rails'
+
+gem 'omniauth', '~> 1.9.1'

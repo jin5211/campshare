@@ -5,7 +5,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       ## Manually Defined Columns
       t.string :name, null: false
-      t.text :profile, null: false
+      t.text :profile
+      t.string :provider
+      t.string :uid
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

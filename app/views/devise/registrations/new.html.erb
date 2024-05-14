@@ -4,9 +4,9 @@
       <h2 class="page-heading">ユーザー新規登録</h2>
         <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 
-        <div class="field">
-          <%= f.label :email, "メールアドレス" , class: "form-label" %><br />
-          <%= f.email_field :email, class: 'form-control', id:"user_email", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
+        <div class="field ">
+          <%= f.label :email, "メールアドレス" , class: "form-label md-6" %><br />
+          <%= f.email_field :email, class: 'form-control md-6', id:"user_email", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="field">
@@ -31,6 +31,12 @@
         <div class="actions">
           <%= f.submit "新規登録", class: :form__btn  %>
         </div>
+      <% end %>
+
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= button_to "#{OmniAuth::Utils.camelize(provider)}アカウントで登録", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: :form__btn__line %><br />
+        <% end %>
       <% end %>
     </div>
   </div>

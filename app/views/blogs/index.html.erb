@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
+<%# GREETING section %>
 <% if user_signed_in? %>
   <div class="greeting fs-3">
     <%= "こんにちは、" %>
@@ -7,14 +7,103 @@
     </div>
   <% end %>
 
+<%# RENTAL GEARS section %>
+<p class="h1 mt-2 mb-5">Rental Gears</p>
 
+<%# if Gear.count == 0 %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%# end %>
+
+<%# if Blog.count > 0 %>
+<%# @gears.each do |gear| %>
+<%# <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <%# <h5 class="card-title"><%# gear.name %><%#</h5>%>
+          <%# <p class="card-text"><%# gear.about %><%#</p>%>
+          <%# <a href="#" class="btn btn-primary">Show</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+<%# BLOG section %>
 <p class="h1 mt-2 mb-5">Blogs</p>
 
 <% if Blog.count == 0 %>
 
 <div class="contaier">
   <div id="blogs">
-    <div class="card w-100">
+    <div class="card w-100 md">
       <div class="card-body d-flex justify-content-between">
         <h5 class="card-title">当ブログ「CampShare」はキャンプ・アウトドア関係の商品レビューや、キャンプで役立つ小ネタ、キャンプ飯のレシピを中心としたブログです。キャンプ体験を投稿してね！</h5>
         <p class="ml-5"><%= link_to "Show", "#" ,  class: "btn btn-success mt-2"%></p>

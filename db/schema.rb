@@ -65,9 +65,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_072759) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "profile", null: false
+    t.text "profile"
+    t.string "provider"
+    t.string "uid"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
