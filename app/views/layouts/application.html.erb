@@ -24,6 +24,7 @@
           <div class="nav__right">
             <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
             <%= link_to "NewBlog", new_blog_path, class: :nav__btn %>
+            <%= link_to "NewGear", new_gear_path, class: :nav__btn %>
           </div>
           <% else %>
           <div class="nav__right">
@@ -34,10 +35,10 @@
         </div>
       </div>
     </header>
-    <div class="container mt-5 mb-5 ">
-      <%= yield %><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <div class="container main overflow-auto">
+      <%= yield %>
     </div>
-    <footer class="footer fixed-bottom">
+    <footer class="container-fluid footer">
       <p class="copyright">Copyright © CampShare All rights reserved.</p>
     </footer>
   </body>

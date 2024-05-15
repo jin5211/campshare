@@ -5,7 +5,9 @@ class CreateGears < ActiveRecord::Migration[7.0]
       t.text       :info,                   null: false
       t.integer    :brand_id,               null: false
       t.integer    :category_id,            null: false
-      t.integer    :price,                  null: false
+      t.integer    :price_1,                null: false
+      t.integer    :price_2,                null: false
+      t.integer    :price_3,                null: false
       t.references :user,                null: false, foreign_key: true
       t.timestamps
     end

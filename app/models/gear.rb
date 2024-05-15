@@ -1,11 +1,16 @@
 class Gear < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   with_options presence: true do
-    validates :name, :info, :price, :image
+    validates :name, :info, :price_1, :price_2, :price_3, :image
     validates :brand_id
     validates :category_id
   end
 
-  validates_numericality_of :price, only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
+  with_options only_integer: true, greater_than_or_equal_to: 500, less_than_or_equal_to: 100_000 do |model|
+    model.validates_numericality_of :price_1
+    model.validates_numericality_of :price_2
+    model.validates_numericality_of :price_3
+  end
 
   belongs_to :user
   has_one_attached :image

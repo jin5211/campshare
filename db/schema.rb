@@ -70,7 +70,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_085926) do
     t.text "info", null: false
     t.integer "brand_id", null: false
     t.integer "category_id", null: false
-    t.integer "price", null: false
+    t.integer "price_1", null: false
+    t.integer "price_2", null: false
+    t.integer "price_3", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

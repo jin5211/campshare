@@ -47,7 +47,9 @@ class GearsController < ApplicationController
                                  :info,
                                  :brand_id,
                                  :category_id,
-                                 :price,
+                                 :price_1,
+                                 :price_2,
+                                 :price_3,
                                  :image).merge(user_id: current_user.id)
   end
 

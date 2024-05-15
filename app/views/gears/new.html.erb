@@ -1,69 +1,164 @@
-    <!-- title -->
-    <h3 class="text-center mt-5">ギアの情報を入力</h3>
+<div class="container">
+  <div class="gears-sell-main container">
+    <h2 class="gears-sell-title">ギアの情報を入力</h2>
+    <%= form_with model:@gear, url: gears_path, local: true do |f| %>
 
-    <!-- gear's photo upload -->
-    <div class="container mt-5 mb-5">
-      <div class="row">
-        <div class="col-4 d-flex">
-          <p class="me-3">ギアの画像</p>
-          <p class="text-danger">必須<i class="bi bi-exclamation-circle"></i></p>
+    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%# render 'shared/error_messages', model: f.object %>
+    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+
+    <%# ギア画像 %>
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        ギア画像
+        <span class="indispensable">必須</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"gear-image" %>
+      </div>
+    </div>
+    <%# /ギア画像 %>
+    <%# ギア名とギア説明 %>
+    <div class="new-gears">
+      <div class="weight-bold-text">
+        ギア名
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :name, class:"gears-text", id:"gear-name", placeholder:"ギア名（必須 40文字まで)", maxlength:"40" %>
+      <div class="gears-explain">
+        <div class="weight-bold-text">
+          ギアの説明
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :info, class:"gears-text", id:"gear-info", placeholder:"ギアの説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <%# /ギア名とギア説明 %>
+
+    <%# ギアの詳細 %>
+    <div class="gears-detail container row mb-5">
+      <div class="weight-bold-text col-6">ギアの詳細</div>
+      <div class="form col-6">
+        <div class="weight-bold-text">
+          カテゴリー
+          <span class="indispensable">必須</span>
+        </div>
+        <div class="me-5">
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"gear-category"}) %>
+        </div>
+        <div class="weight-bold-text">
+          ギアのブランド名
+          <span class="indispensable">必須</span>
+        </div>
+        <div class="me-5">
+        <%= f.collection_select(:brand_id, Brand.all, :id, :name, {}, {class:"select-box", id:"gear-brand"}) %>
         </div>
       </div>
-      <div class="input-group mb-3">
-        <input type="file" class="form-control" id="inputGroupFile02">
-        <label class="input-group-text" for="inputGroupFile02"></label>
+    </div>
+    <%# /ギアの詳細 %>
+
+    <%# レンタル価格 %>
+    <div class="sell-price mb-5">
+      <div class="weight-bold-text question-text">
+        <span>レンタル価格<br>日帰りプラン<br>(利用時間8:00~当日18:00まで)<br>(¥500〜100,000)</span>
+        <a class="question" href="#">?</a>
+      </div>
+      <div>
+        <div class="price-content">
+          <div class="price-text">
+            <span>価格</span>
+            <span class="indispensable">必須</span>
+          </div>
+          <span class="sell-yen">¥</span>
+          <%= f.text_field :price_1, class:"price-input", id:"gear-price-1", placeholder:"例）500" %>
+        </div>
+        <div class="price-content">
+          <span>レンタル手数料 (10%)</span>
+          <span>
+            <span id='add-tax-price-1'></span>円
+          </span>
+        </div>
+        <div class="price-content">
+          <span>レンタル利益</span>
+          <span>
+            <span id='profit-1'></span>円
+          </span>
+        </div>
       </div>
     </div>
 
-    <!-- gear information -->
-    <div class="container">
-      <div class="mb-5">
-        <div class="d-flex">
-          <label for="exampleFormControlInput1" class="form-label me-3">ギア名</label>
-          <p class="text-danger">必須<i class="bi bi-exclamation-circle"></i></p>
-        </div>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Gear Name">
+    <div class="sell-price mb-5">
+      <div class="weight-bold-text question-text">
+        <span>レンタル価格<br>1泊2日プラン<br>(利用時間8:00~翌日18:00まで)<br>(¥500〜100,000)</span>
+        <a class="question" href="#">?</a>
       </div>
-      <div class="mb-5">
-        <div class="d-flex">
-          <label for="exampleFormControlTextarea1" class="form-label me-3">ギアの説明</label>
-          <p class="text-danger">必須<i class="bi bi-exclamation-circle"></i></p>
+      <div>
+        <div class="price-content">
+          <div class="price-text">
+            <span>価格</span>
+            <span class="indispensable">必須</span>
+          </div>
+          <span class="sell-yen">¥</span>
+          <%= f.text_field :price_2, class:"price-input", id:"gear-price-2", placeholder:"例）500" %>
         </div>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-      </div>
-      <div class="mb-5">
-        <div class="d-flex">
-          <label for="exampleFormControlTextarea1" class="form-label me-3">ブランド名</label>
-          <p class="text-danger">必須<i class="bi bi-exclamation-circle"></i></p>
+        <div class="price-content">
+          <span>レンタル手数料 (10%)</span>
+          <span>
+            <span id='add-tax-price-2'></span>円
+          </span>
         </div>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>ブランド名を選択</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="mb-5">
-        <div class="d-flex">
-          <label for="exampleFormControlTextarea1" class="form-label me-3">カテゴリ名</label>
-          <p class="text-danger">必須<i class="bi bi-exclamation-circle"></i></p>
-        </div>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>カテゴリ名を選択</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="mb-5">
-        <div class="input-group mb-3">
-          <span class="input-group-text">1日レンタル料金</span>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-          <span class="input-group-text">円</span>
+        <div class="price-content">
+          <span>レンタル利益</span>
+          <span>
+            <span id='profit-2'></span>円
+          </span>
         </div>
       </div>
-
     </div>
 
-    <!-- google map api -->
+    <div class="sell-price mb-5">
+      <div class="weight-bold-text question-text">
+        <span>レンタル価格<br>2泊3日プラン<br>(利用時間8:00~翌々日18:00まで)<br>(¥500〜100,000)</span>
+        <a class="question" href="#">?</a>
+      </div>
+      <div>
+        <div class="price-content">
+          <div class="price-text">
+            <span>価格</span>
+            <span class="indispensable">必須</span>
+          </div>
+          <span class="sell-yen">¥</span>
+          <%= f.text_field :price_3, class:"price-input", id:"gear-price-3", placeholder:"例）500" %>
+        </div>
+        <div class="price-content">
+          <span>レンタル手数料 (10%)</span>
+          <span>
+            <span id='add-tax-price-3'></span>円
+          </span>
+        </div>
+        <div class="price-content">
+          <span>レンタル利益</span>
+          <span>
+            <span id='profit-3'></span>円
+          </span>
+        </div>
+      </div>
+    </div>
+    <%# /レンタル価格 %>
 
+    <%# 注意書き %>
+    <%# /注意書き %>
+
+    <%# 下部ボタン %>
+    <div class="container d-grid col-8 gap-4 mt-5">
+      <%= f.submit "出品する", class:"btn btn-danger" %>
+      <%=link_to 'もどる', root_path, class:"btn btn-primary" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
+
+</div>
