@@ -1,0 +1,46 @@
+<%# レンタル内容確認 %>
+<div class="container text-center mb-5">
+  <%= image_tag @gear.image ,class:"img-thumbnail gear-box-img mb-3" if @gear.image.attached? %>
+  <h1 class="mb-3"><%= @gear.name %></h1>
+  <p class="h3 mb-3">
+    <span id="plan-1">日帰りプラン:</span>
+    <span id="price-1"><%= "#{@gear.price_1}円" %></span>
+  </p>
+  <p class="h3 mb-3">
+    <span id="plan-2">1泊2日プラン:</span>
+    <span id="price-2"><%= "#{@gear.price_2}円" %></span>
+  </p>
+  <p class="h3 mb-3">
+    <span id="plan-3">2泊3日プラン:</span>
+    <span id="price-3"><%= "#{@gear.price_2}円" %></span>
+  </p>
+</div>
+
+
+<%= form_with model: @order_reservation, url: gear_orders_path, local: true do |f| %>
+
+<%# 予約日程入力 %>
+<div class="container text-center mb-5">
+  <p class="h2 mb-3">予約日程</p>
+  <div class="row-3 mb-3">
+    <%= f.label :レンタル開始日, class: 'label' %>
+    <%= f.date_field :start_date, class: 'date-select', id: 'start-date' %>
+  </div>
+  <div class="row-3 mb-3">
+    <%= f.label :返却日, class: 'label' %>
+    <%= f.date_field :end_date, class: 'date-select', id: 'end-date' %>
+  </div>
+</div>
+
+<div class="container text-center mb-5">
+  <p class="h2 mb-3">お客様のプランと金額は下記となります。</p>
+  <div class="row">
+    <span class="col">プラン</span>
+    <span class="col" id="selected-plan"></span>
+  </div>
+  <div class="row">
+    <span class="col">金額</span>
+    <span class="col" id="selected-price"></span>
+  </div>
+</div>
+<% end %>

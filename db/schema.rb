@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_14_085926) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_17_065330) do
   create_table "action_text_rich_texts", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -79,6 +79,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_085926) do
     t.index ["user_id"], name: "index_gears_on_user_id"
   end
 
+  create_table "orders", charset: "utf8", force: :cascade do |t|
+    t.bigint "gear_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gear_id"], name: "index_orders_on_gear_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "reservations", charset: "utf8", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.string "address", null: false
+    t.string "phone_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_reservations_on_order_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "profile"
@@ -99,4 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_14_085926) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "users"
   add_foreign_key "gears", "users"
+  add_foreign_key "orders", "gears"
+  add_foreign_key "orders", "users"
+  add_foreign_key "reservations", "orders"
 end

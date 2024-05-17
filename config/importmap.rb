@@ -10,3 +10,4 @@ pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.6/lib/inde
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
 pin "commission", to: "commission.js"
+pin "plan", to: "plan.js"

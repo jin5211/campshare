@@ -1,7 +1,7 @@
 <div class="container text-center mb-5">
   <p class="h2 text-decoration-underline mb-2"><%= @blog.title %></p>
   <p class="h3 text-decoration-underline">
-    <%= link_to "by #{@blog.user.name}", user_path(current_user) %>
+    <%= link_to "by #{@blog.user.name}", user_path(@blog.user) %>
   </p>
 </div>
 

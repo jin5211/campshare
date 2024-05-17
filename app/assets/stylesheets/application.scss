@@ -394,16 +394,6 @@ a {
 }
 
 /* 共通 */
-.indispensable {
-  background: #ea352d;
-  margin-left: 8px;
-  padding: 3px;
-  border-radius: 2px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-}
-
 .weight-bold-text {
   font-weight: bold;
   min-width: 170px;
@@ -593,4 +583,42 @@ a {
 }
 
 
-// Gears/new
+// Gears_index
+/* primary color を設定する */
+:root{
+  --primary-color: #0d6efd;
+  --dark: #21252f;
+  --body: #888;
+  --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.card-effect {
+  box-shadow: var(--box-shadow);
+  background-color: #fff;
+  padding: 5px;
+  transition: all 0.35s ease;
+}
+
+.card-effect:hover {
+  box-shadow: none;
+  transform: translateY(5px);
+}
+
+
+// Gears_show
+
+.gear-box-img {
+  height: 50vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: rgb(205, 202, 202);
+  object-fit: contain;
+}
+
+.gear-box-img-pre {
+  height: 50vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: rgba(224, 86, 113, 0.794);
+  object-fit: contain;
+}

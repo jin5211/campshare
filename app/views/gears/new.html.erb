@@ -11,7 +11,7 @@
     <div class="img-upload">
       <div class="weight-bold-text">
         ギア画像
-        <span class="indispensable">必須</span>
+        <span class="badge text-bg-danger">必須</span>
       </div>
       <div class="click-upload">
         <p>
@@ -25,13 +25,13 @@
     <div class="new-gears">
       <div class="weight-bold-text">
         ギア名
-        <span class="indispensable">必須</span>
+        <span class="badge text-bg-danger">必須</span>
       </div>
       <%= f.text_area :name, class:"gears-text", id:"gear-name", placeholder:"ギア名（必須 40文字まで)", maxlength:"40" %>
       <div class="gears-explain">
         <div class="weight-bold-text">
           ギアの説明
-          <span class="indispensable">必須</span>
+          <span class="badge text-bg-danger">必須</span>
         </div>
         <%= f.text_area :info, class:"gears-text", id:"gear-info", placeholder:"ギアの説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
@@ -44,14 +44,14 @@
       <div class="form col-6">
         <div class="weight-bold-text">
           カテゴリー
-          <span class="indispensable">必須</span>
+          <span class="badge text-bg-danger">必須</span>
         </div>
         <div class="me-5">
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"gear-category"}) %>
         </div>
         <div class="weight-bold-text">
           ギアのブランド名
-          <span class="indispensable">必須</span>
+          <span class="badge text-bg-danger">必須</span>
         </div>
         <div class="me-5">
         <%= f.collection_select(:brand_id, Brand.all, :id, :name, {}, {class:"select-box", id:"gear-brand"}) %>
@@ -70,7 +70,7 @@
         <div class="price-content">
           <div class="price-text">
             <span>価格</span>
-            <span class="indispensable">必須</span>
+            <span class="badge text-bg-danger">必須</span>
           </div>
           <span class="sell-yen">¥</span>
           <%= f.text_field :price_1, class:"price-input", id:"gear-price-1", placeholder:"例）500" %>
@@ -99,7 +99,7 @@
         <div class="price-content">
           <div class="price-text">
             <span>価格</span>
-            <span class="indispensable">必須</span>
+            <span class="badge text-bg-danger">必須</span>
           </div>
           <span class="sell-yen">¥</span>
           <%= f.text_field :price_2, class:"price-input", id:"gear-price-2", placeholder:"例）500" %>
@@ -128,7 +128,7 @@
         <div class="price-content">
           <div class="price-text">
             <span>価格</span>
-            <span class="indispensable">必須</span>
+            <span class="badge text-bg-danger">必須</span>
           </div>
           <span class="sell-yen">¥</span>
           <%= f.text_field :price_3, class:"price-input", id:"gear-price-3", placeholder:"例）500" %>

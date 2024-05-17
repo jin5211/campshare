@@ -23,6 +23,8 @@
           <% if user_signed_in? %>
           <div class="nav__right">
             <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
+            <%= link_to "Blogs", root_path, class: :nav__btn %>
+            <%= link_to "Gears", gears_path, class: :nav__btn %>
             <%= link_to "NewBlog", new_blog_path, class: :nav__btn %>
             <%= link_to "NewGear", new_gear_path, class: :nav__btn %>
           </div>
@@ -30,13 +32,20 @@
           <div class="nav__right">
             <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
             <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+            <%= link_to "Blogs", root_path, class: :nav__btn %>
+            <%= link_to "Gears", gears_path, class: :nav__btn %>
           </div>
           <% end %>
         </div>
       </div>
     </header>
+
+
     <div class="container main overflow-auto">
+
+      <p style="color: green"><%= notice %></p>
       <%= yield %>
+
     </div>
     <footer class="container-fluid footer">
       <p class="copyright">Copyright © CampShare All rights reserved.</p>

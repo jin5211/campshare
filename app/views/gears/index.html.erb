@@ -1,0 +1,103 @@
+<%# Greeting section %>
+
+<%= render 'layouts/greeting' %>
+
+<%# RENTAL GEARS section %>
+<p class="h1 mt-2 mb-5">Rental Gears</p>
+
+<% if Gear.count == 0 %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="./app/assets/images/blog1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">Gear Name</h5>
+        <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mt-3">Detail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<% if Blog.count > 0 %>
+  <div class="container " >
+    <div class="row gap-3 " style="margin: auto;">
+      <% @gears.each do |gear| %>
+      <div class="card card-effect col-md-4" style="width: 20rem;">
+        <%= image_tag gear.image, class: "gear-img m-3" if gear.image.attached?%>
+        <div class="card-body">
+          <h5 class="card-title"><%= gear.name %>
+          <p class="card-text mb-3"><% gear.info %></p>
+          <p class="card-text mb-2">レンタル金額:</p>
+          <p class="card-text mb-2">
+            <span>日帰りプラン:</span>
+            <%= "#{gear.price_1}円" %>
+          </p>
+          <p class="card-text mb-2">
+            <span>1泊2日プラン:</span>
+            <%= "#{gear.price_2}円" %>
+          </p>
+          <p class="card-text mb-3">
+            <span>2泊3日プラン:</span>
+            <%= "#{gear.price_2}円" %>
+          </p>
+          <p class="ml-5"><%= link_to "Show", gear_path(gear) ,  class: "btn btn-success mt-2"%></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
