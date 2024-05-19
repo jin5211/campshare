@@ -1,0 +1,55 @@
+<div class="container text-center"></div>
+  <% if @gear.order.present?%>
+    <div class="gear-box-img-pre mb-3 text-center d-flex align-items-center justify-content-center" style="margin: auto;">
+      <p class="h1">準備中</p>
+    </div>
+  <% else %>
+    <%= image_tag @gear.image ,class:"img-thumbnail gear-box-img mb-3" if @gear.image.attached? %>
+  <% end %>
+  <h1 class="mb-3"><%= @gear.name %></h1>
+  <p class="h3 mb-3">
+    <span>日帰りプラン:</span>
+    <%= "#{@gear.price_1}円" %>
+  </p>
+  <p class="h3 mb-3">
+    <span>1泊2日プラン:</span>
+    <%= "#{@gear.price_2}円" %>
+  </p>
+  <p class="h3 mb-3">
+    <span>2泊3日プラン:</span>
+    <%= "#{@gear.price_2}円" %>
+  </p>
+</div>
+
+<div class="container mb-5">
+  <table class="table" style="margin: auto;">
+    <tbody>
+      <tr>
+        <td>カテゴリー</td>
+        <td><%= @gear.category.name %></td>
+      </tr>
+      <tr>
+        <td>ギアのブランド名</td>
+        <td><%= @gear.brand.name %></td>
+      </tr>
+      <tr>
+        <td>保有者の氏名</td>
+        <td><%= "#{@gear.user.name}さん" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center mb-5">
+  <p class="fs-5"><%= @gear.info %></p>
+</div>
+
+
+<% if user_signed_in? %>
+<%# owner 専用 button %>
+  <% if current_user.id == @gear.user_id %>
+    <% if @gear.order.present?%>
+      <%= link_to "返却済みにする", "/gears/#{@gear.id}/orders/#{@gear.order.id}", data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
+    <% end %>
+  <% end %>
+<% end %>

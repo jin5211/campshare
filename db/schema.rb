@@ -90,8 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_065330) do
 
   create_table "reservations", charset: "utf8", force: :cascade do |t|
     t.bigint "order_id", null: false
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.string "name", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
     t.datetime "created_at", null: false
