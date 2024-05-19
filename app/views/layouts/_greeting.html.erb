@@ -1,0 +1,7 @@
+<%# GREETING section %>
+<% if user_signed_in? %>
+<div class="greeting fs-3">
+  <%= "こんにちは、" %>
+    <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link %>
+</div>
+<% end %>

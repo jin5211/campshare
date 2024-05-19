@@ -1,0 +1,73 @@
+<%# Title %>
+<div class="container text-center fw-bold mb-5">
+  <h1>ギア詳細情報確認画面</h1>
+</div>
+
+<div class="container text-center">
+  <% if @gear.order.present?%>
+    <div class="gear-box-img-pre mb-3 text-center d-flex align-items-center justify-content-center" style="margin: auto;">
+      <p class="h1">準備中</p>
+    </div>
+  <% else %>
+    <%= image_tag @gear.image ,class:"img-thumbnail gear-box-img mb-3" if @gear.image.attached? %>
+  <% end %>
+  <h1 class="mb-3"><%= @gear.name %></h1>
+  <p class="h4 mb-3">
+    <span class="fw-semibold" id="plan-1">日帰りプラン:</span>
+    <span id="price-1"><%= "　#{@gear.price_1}　円" %></span>
+  </p>
+  <p class="h4 mb-3">
+    <span class="fw-semibold" id="plan-2">1泊2日プラン:</span>
+    <span id="price-2"><%= "　#{@gear.price_2}　円" %></span>
+  </p>
+  <p class="h4 mb-5">
+    <span class="fw-semibold" id="plan-3">2泊3日プラン:</span>
+    <span id="price-3"><%= "　#{@gear.price_3}　円" %></span>
+  </p>
+</div>
+
+<% if user_signed_in? %>
+<%# owner 専用 button %>
+  <% if current_user.id == @gear.user_id %>
+    <div class="container text-center d-grid gap-2 col-4 mb-5">
+      <%= link_to "ギアの編集", edit_gear_path(@gear), method: :get, class: "btn btn-primary btn-lg me-3" %>
+      <span class="fs-5 me-3">or</span>
+      <%= link_to "削除", gear_path(@gear), data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
+    </div>
+    <% if @gear.order.present?%>
+      <%= link_to "予約状況を管理する", "/gears/#{@gear.id}/orders/#{@gear.order.id}/edit", data: {turbo_method: :get}, class:"btn btn-danger btn-lg" %>
+    <% end %>
+  <% else %>
+  <%# customer 専用 button %>
+    <div class="container text-center mb-5">
+      <% if @gear.order.present?%>
+      <p class="fs-5">ギアが予約されています</p>
+      <% else %>
+      <%= link_to "レンタルに進む", gear_orders_path(@gear), class: "btn btn-primary btn-lg me-3"%>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="container mb-5">
+  <table class="table" style="margin: auto;">
+    <tbody>
+      <tr>
+        <td>カテゴリー</td>
+        <td><%= @gear.category.name %></td>
+      </tr>
+      <tr>
+        <td>ギアのブランド名</td>
+        <td><%= @gear.brand.name %></td>
+      </tr>
+      <tr>
+        <td>保有者の氏名</td>
+        <td><%= "#{@gear.user.name}さん" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center mb-5">
+  <p class="fs-5"><%= @gear.info %></p>
+</div>
