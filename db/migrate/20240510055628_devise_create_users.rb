@@ -4,10 +4,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
       ## Manually Defined Columns
-      t.string :name, null: false
-      t.text :profile
-      t.string :provider
-      t.string :uid
+      t.string  :name, null: false
+      t.text    :profile
+      t.string  :provider
+      t.string  :uid
+      t.integer :prefecture_id
+      t.string  :address
+      t.string  :phone_number
+      t.integer :contact_time_id
+      t.string  :contact_time_another
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

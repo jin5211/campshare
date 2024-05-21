@@ -1,7 +1,6 @@
 class OrderReservation
   include ActiveModel::Model
-  attr_accessor :price, :user_id, :gear_id, :name, :address, :phone_number
-
+  attr_accessor :price, :user_id, :gear_id, :name, :address, :phone_number, :token
   attr_reader :start_date, :end_date
 
   with_options presence: true do
@@ -13,6 +12,7 @@ class OrderReservation
     validates :name
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/ }
+    validates :token
   end
 
   validate :validate_start_date_in_future

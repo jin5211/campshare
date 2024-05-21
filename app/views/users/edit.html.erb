@@ -1,0 +1,83 @@
+<div class="main">
+  <div class="inner">
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <div class="user__wrapper">
+      <h2 class="page-heading">ユーザー情報の編集</h2>
+      <%= form_for(@user) do |f| %>
+        <%# プロフィール画像 %>
+        <div class="img-upload">
+          <div class="weight-bold-text">
+            プロフィール画像
+            <span class="badge text-bg-info">任意</span>
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+            <%= f.file_field :profile_image, id:"profile-image" %>
+          </div>
+        </div>
+        <%# プロフィール画像 %>
+
+        <%# ユーザー名 %>
+        <div class="field mb-3">
+          <%= f.label :name, "ユーザー名", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
+          <%= f.text_field :name, class: 'form-control mb-5', id:"user_name", placeholder: "Name"%>
+        </div>
+        <%# ユーザー名 %>
+
+        <%# 都道府県名 %>
+        <div class="field mb-3">
+          <%= f.label :prefecture_id, "地域", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+          <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+        </div>
+        <%# 都道府県名 %>
+
+        <%# 自己紹介 %>
+        <div class="form-group mb-5">
+          <%= f.label :profile, '自己紹介', class: "mb-2" %>
+          <%= f.text_area :profile, class: 'form-control' %>
+        </div>
+        <%# 自己紹介 %>
+
+        <%# ギアの受け取り可能な住所 %>
+        <div class="field mb-5">
+          <%= f.label :address, "レンタルギアの受け取り可能な住所", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+          <%= f.text_field :address, class: 'form-control mb-3', id:"user_name", placeholder: "例）〒123-4567 東京都板橋区青山1-1-1"%>
+        </div>
+        <%# ギアの受け取り可能な住所%>
+
+        <%# 連絡可能電話番号 %>
+        <div class="field mb-5">
+          <%= f.label :phone_number, "電話番号", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+          <%= f.text_field :phone_number, class: 'form-control', id:"user_name", placeholder:"例）09012345678",maxlength:"11" %>
+        </div>
+        <%# 連絡可能電話番号 %>
+
+        <%# 連絡可能な時間帯 %>
+        <div class="field mb-5">
+          <%= f.label :contact_time, "連絡可能な時間帯", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+          <%= f.collection_select(:contact_time_id, ContactTime.all, :id, :name, {}, {class:"select-box", id:"contact-time"}) %>
+        </div>
+        <%# 連絡可能な時間帯 %>
+
+        <%# 連絡可能な時間帯でその他を選んだ方記入 %>
+        <div class="field mb-5">
+          <%= f.label :contact_time_another, "連絡可能な時間帯で「その他」を選択した方はここに記入してください", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+          <%= f.text_area :contact_time_another, class: 'form-control', rows: 3, id:"user_name", placeholder:"例）平日は仕事のため連絡取れない可能性があります。土日祝日であれば10:00 AM から 8:00 PMまで連絡可能です。" %>
+        </div>
+        <%# 連絡可能な時間帯でその他を選んだ方記入 %>
+
+        <%# 登録ボタン %>
+        <div class="form-group">
+          <%= f.submit '更新', class: 'btn btn-primary mb-5' %>
+        </div>
+        <%# 登録ボタン %>
+      <% end %>
+    </div>
+  </div>
+</div>

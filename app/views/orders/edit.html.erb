@@ -1,4 +1,4 @@
-<div class="container text-center"></div>
+<div class="container text-center">
   <% if @gear.order.present?%>
     <div class="gear-box-img-pre mb-3 text-center d-flex align-items-center justify-content-center" style="margin: auto;">
       <p class="h1">準備中</p>
@@ -7,19 +7,54 @@
     <%= image_tag @gear.image ,class:"img-thumbnail gear-box-img mb-3" if @gear.image.attached? %>
   <% end %>
   <h1 class="mb-3"><%= @gear.name %></h1>
-  <p class="h3 mb-3">
-    <span>日帰りプラン:</span>
-    <%= "#{@gear.price_1}円" %>
+  <p class="h4 mb-3">
+    <span class="fw-semibold" id="plan-1">日帰りプラン(利用時間8:00~当日18:00まで):</span>
+    <span id="price-1"><%= "　#{@gear.price_1}　円" %></span>
   </p>
-  <p class="h3 mb-3">
-    <span>1泊2日プラン:</span>
-    <%= "#{@gear.price_2}円" %>
+  <p class="h4 mb-3">
+    <span class="fw-semibold" id="plan-2">1泊2日プラン(利用時間8:00~翌日18:00まで):</span>
+    <span id="price-2"><%= "　#{@gear.price_2}　円" %></span>
   </p>
-  <p class="h3 mb-3">
-    <span>2泊3日プラン:</span>
-    <%= "#{@gear.price_2}円" %>
+  <p class="h4 mb-5">
+    <span class="fw-semibold" id="plan-3">2泊3日プラン(利用時間8:00~翌々日18:00まで):</span>
+    <span id="price-3"><%= "　#{@gear.price_3}　円" %></span>
   </p>
+
+  <% if @gear.order.present? %>
+    <div class="container mb-5">
+      <h2 class="mb-3 fw-bold">レンタル予約状況</h2>
+      <% if current_user.id == @gear.user_id %>
+      <% user = User.find(@gear.order.user_id)%>
+      <p class="fs-4 text-danger text-decoration-underline mb-3"><%=link_to "#{user.name}さんからのレンタル予約が入っています。", user_path(user)%></p>
+      <% end %>
+      <table class="table table-bordered" style="margin: auto;">
+        <thead>
+          <tr>
+            <th scope="col">予約開始日</th>
+            <th scope="col">予約終了日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @gear.order.reservation.start_date.strftime('%Y-%m-%d') %></td>
+            <td><%= @gear.order.reservation.end_date.strftime('%Y-%m-%d') %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
+
+<% if user_signed_in? %>
+<%# owner 専用 button %>
+  <% if current_user.id == @gear.user_id %>
+    <% if @gear.order.present?%>
+    <div class="container text-center d-grid gap-2 col-4 mb-5">
+      <%= link_to "返却済みにする", "/gears/#{@gear.id}/orders/#{@gear.order.id}", data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>
 
 <div class="container mb-5">
   <table class="table" style="margin: auto;">
@@ -34,7 +69,7 @@
       </tr>
       <tr>
         <td>保有者の氏名</td>
-        <td><%= "#{@gear.user.name}さん" %></td>
+        <td><%=link_to "#{@gear.user.name}さん" , user_path(@gear.user) %></td>
       </tr>
     </tbody>
   </table>
@@ -43,13 +78,3 @@
 <div class="container text-center mb-5">
   <p class="fs-5"><%= @gear.info %></p>
 </div>
-
-
-<% if user_signed_in? %>
-<%# owner 専用 button %>
-  <% if current_user.id == @gear.user_id %>
-    <% if @gear.order.present?%>
-      <%= link_to "返却済みにする", "/gears/#{@gear.id}/orders/#{@gear.order.id}", data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
-    <% end %>
-  <% end %>
-<% end %>

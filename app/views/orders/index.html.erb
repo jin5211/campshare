@@ -1,3 +1,5 @@
+<%= include_gon %>
+
 <%# Title %>
 <div class="container text-center fw-bold mb-5">
   <h1>レンタル情報入力画面</h1>
@@ -8,17 +10,17 @@
   <%= image_tag @gear.image ,class:"img-thumbnail gear-box-img mb-3" if @gear.image.attached? %>
   <h1 class="mb-3"><%= @gear.name %></h1>
   <p class="h4 mb-3">
-    <span class="fw-semibold" id="plan-1">日帰りプラン:</span>
+    <span class="fw-semibold" id="plan-1">日帰りプラン(利用時間8:00~当日18:00まで):</span>
     <span id="price-1"><%= "　#{@gear.price_1}　円" %></span>
     <span class="invisible" id="price-1-value"><%= "#{@gear.price_1}" %></span>
   </p>
   <p class="h4 mb-3">
-    <span class="fw-semibold" id="plan-2">1泊2日プラン:</span>
+    <span class="fw-semibold" id="plan-2">1泊2日プラン(利用時間8:00~翌日18:00まで):</span>
     <span id="price-2"><%= "　#{@gear.price_2}　円" %></span>
     <span class="invisible" id="price-2-value"><%= "#{@gear.price_2}" %></span>
   </p>
   <p class="h4 mb-3">
-    <span class="fw-semibold" id="plan-3">2泊3日プラン:</span>
+    <span class="fw-semibold" id="plan-3">2泊3日プラン(利用時間8:00~翌々日18:00まで):</span>
     <span id="price-3"><%= "　#{@gear.price_3}　円" %></span>
     <span class="invisible" id="price-3-value"><%= "#{@gear.price_3}" %></span>
   </p>
@@ -29,7 +31,7 @@
 
 <%# 予約日程入力 %>
 <div class="container w-50 mb-5">
-  <p class="h2 mb-5 fw-bold">予約日程</p>
+  <p class="h2 text-center mb-5 fw-bold">予約日程</p>
   <div class="mb-3">
     <%= f.label :start_date, "レンタル開始日", class: 'label col fw-semibold' %>
     <span class="badge rounded-pill text-bg-danger">必須</span>
@@ -90,15 +92,15 @@
 <%# カード情報の入力 %>
 <div class="container w-50">
   <div class='credit-card-form'>
-    <h1 class='info-input-haedline text-center mb-5'>
+    <h1 class='info-input-haedline text-center fw-semibold mb-5'>
       クレジットカード情報入力
     </h1>
     <div class="form-group">
-      <div class='form-text-wrap mb-5'>
+      <div class='form-text-wrap mb-2'>
         <label class="form-text">カード情報</label>
-        <span class="badge rounded-pill text-bg-danger">必須</span>
+        <span class="badge rounded-pill text-bg-danger">必須</span><br><br>
+        <div id="number-form" class="input-default mb-3"></div>
       </div>
-      <div id="number-form" class="input-default mb-3"></div>
       <div class='available-card text-ce mb-5'>
         <%= image_tag 'card-visa.gif', class: 'card-logo'%>
         <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
@@ -109,18 +111,16 @@
     <div class="form-group">
       <div class='form-text-wrap mb-5'>
         <label class="form-text">有効期限</label>
-        <span class="badge rounded-pill text-bg-danger">必須</span>
-      </div>
-      <div class='input-expiration-date-wrap mb-3'>
+        <span class="badge rounded-pill text-bg-danger">必須</span><br><br>
         <div id="expiry-form" class="input-default"></div>
       </div>
     </div>
     <div class="form-group mb-5">
       <div class='form-text-wrap'>
         <label class="form-text">セキュリティコード</label>
-        <span class="badge rounded-pill text-bg-danger">必須</span>
+        <span class="badge rounded-pill text-bg-danger">必須</span><br><br>
+        <div id="cvc-form" class="input-default"></div>
       </div>
-      <div id="cvc-form" class="input-default"></div>
     </div>
   </div>
 </div>
