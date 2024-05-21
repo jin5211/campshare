@@ -37,6 +37,11 @@ a {
 
 /* ヘッダー */
 
+.logo {
+  width: 50%; /* 幅を50%に設定 */
+  height: auto; /* アスペクト比を維持 */
+}
+
 .header {
   margin-bottom: 48px;
   padding: 20px 0;
@@ -307,7 +312,7 @@ a {
 /* フッター */
 
 .footer {
-  height: 50px;
+  height: 100px;
   background-color: #999;
   padding: 10px 0;
 }

@@ -1,8 +1,9 @@
 class GearsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_gear, except: [:index, :new, :create]
-  before_action :user_confirmation, only: [:edit, :update, :destory]
+  before_action :user_confirmation, only: [:edit, :update, :destroy]
   before_action :reserved_by_someone?, only: [:edit, :update, :destroy]
+  before_action :ensure_profile_complete, only: [:new, :create]
 
   def index
     @gears = Gear.order('created_at DESC')
@@ -15,7 +16,7 @@ class GearsController < ApplicationController
   def create
     @gear = Gear.new(gear_params)
     if @gear.save
-      redirect_to gears_path
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -64,6 +65,16 @@ class GearsController < ApplicationController
   def reserved_by_someone?
     if @gear.order.present?
       redirect_to root_path
+    end
+  end
+
+  def ensure_profile_complete
+    unless current_user.profile_image.attached? &&
+           current_user.prefecture_id.present? &&
+           current_user.address.present? &&
+           current_user.phone_number.present? &&
+           (current_user.contact_time_id.present? || current_user.contact_time_another.present?)
+      redirect_to edit_user_path(current_user), alert: 'プロフィール情報が不足しています。出品する前にプロフィールを完成させてください。'
     end
   end
 end

@@ -4,9 +4,11 @@ class OrdersController < ApplicationController
   before_action :set_gear_to_del_order, only: [:edit, :destroy]
   before_action :reserved_by_someone?, only: [:index, :create]
   before_action :are_you_owner?, only: [:index, :create]
+  before_action :ensure_profile_complete, only: [:index, :create]
 
   # レンタル情報入力画面の表示
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_reservation = OrderReservation.new
   end
 
@@ -14,9 +16,11 @@ class OrdersController < ApplicationController
   def create
     @order_reservation = OrderReservation.new(order_params_with_date_conversion)
     if @order_reservation.valid?
+      pay_item
       @order_reservation.save
       redirect_to root_path, notice: "予約が完了しました"
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, notice: "入力に不備がありました。もう一度入力してください。"
     end
   end
@@ -55,7 +59,7 @@ class OrdersController < ApplicationController
   # パラメータの取得と日付型への変換
   def order_params
     params.require(:order_reservation).permit(:start_date, :end_date, :address, :name, :phone_number, :price)
-          .merge(user_id: current_user.id, gear_id: @gear.id)
+          .merge(user_id: current_user.id, gear_id: @gear.id, token: params[:token])
   end
 
   # start_dateとend_dateが存在する場合は日付型に変換して返す
@@ -71,5 +75,25 @@ class OrdersController < ApplicationController
     @gear = Gear.find(params[:gear_id])
     @order = @gear.order
     @reservation = @order.reservation
+  end
+
+  # Ensure user profile is complete before proceeding
+  def ensure_profile_complete
+    unless current_user.profile_image.attached? &&
+           current_user.prefecture_id.present? &&
+           current_user.address.present? &&
+           current_user.phone_number.present? &&
+           (current_user.contact_time_id.present? || current_user.contact_time_another.present?)
+      redirect_to edit_user_path(current_user), alert: 'プロフィール情報が不足しています。レンタルを行う前にプロフィールを完成させてください。'
+    end
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp::Charge.create(
+        amount: order_params[:price],  # 商品の値段
+        card: order_params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
   end
 end

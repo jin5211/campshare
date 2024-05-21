@@ -13,44 +13,72 @@
   <% end %>
   <h1 class="mb-3"><%= @gear.name %></h1>
   <p class="h4 mb-3">
-    <span class="fw-semibold" id="plan-1">日帰りプラン:</span>
+    <span class="fw-semibold" id="plan-1">日帰りプラン(利用時間8:00~当日18:00まで):</span>
     <span id="price-1"><%= "　#{@gear.price_1}　円" %></span>
   </p>
   <p class="h4 mb-3">
-    <span class="fw-semibold" id="plan-2">1泊2日プラン:</span>
+    <span class="fw-semibold" id="plan-2">1泊2日プラン(利用時間8:00~翌日18:00まで):</span>
     <span id="price-2"><%= "　#{@gear.price_2}　円" %></span>
   </p>
   <p class="h4 mb-5">
-    <span class="fw-semibold" id="plan-3">2泊3日プラン:</span>
+    <span class="fw-semibold" id="plan-3">2泊3日プラン(利用時間8:00~翌々日18:00まで):</span>
     <span id="price-3"><%= "　#{@gear.price_3}　円" %></span>
   </p>
-</div>
 
-<% if user_signed_in? %>
-<%# owner 専用 button %>
-  <% if current_user.id == @gear.user_id %>
-    <div class="container text-center d-grid gap-2 col-4 mb-5">
-      <%= link_to "ギアの編集", edit_gear_path(@gear), method: :get, class: "btn btn-primary btn-lg me-3" %>
-      <span class="fs-5 me-3">or</span>
-      <%= link_to "削除", gear_path(@gear), data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
-    </div>
-    <% if @gear.order.present?%>
-      <%= link_to "予約状況を管理する", "/gears/#{@gear.id}/orders/#{@gear.order.id}/edit", data: {turbo_method: :get}, class:"btn btn-danger btn-lg" %>
-    <% end %>
-  <% else %>
-  <%# customer 専用 button %>
-    <div class="container text-center mb-5">
-      <% if @gear.order.present?%>
-      <p class="fs-5">ギアが予約されています</p>
-      <% else %>
-      <%= link_to "レンタルに進む", gear_orders_path(@gear), class: "btn btn-primary btn-lg me-3"%>
+  <% if @gear.order.present? %>
+    <div class="container mb-3">
+      <h2 class="mb-3 fw-bold">レンタル予約状況</h2>
+      <% if user_signed_in? %>
+      <% if current_user.id == @gear.user_id %>
+      <% user = User.find(@gear.order.user_id)%>
+      <p class="fs-4 text-danger text-decoration-underline mb-3"><%=link_to "#{user.name}さんからのレンタル予約が入っています。", user_path(user)%></p>
       <% end %>
+      <% end %>
+      <table class="table table-bordered" style="margin: auto;">
+        <thead>
+          <tr>
+            <th scope="col">予約開始日</th>
+            <th scope="col">予約終了日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @gear.order.reservation.start_date.strftime('%Y-%m-%d') %></td>
+            <td><%= @gear.order.reservation.end_date.strftime('%Y-%m-%d') %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   <% end %>
-<% end %>
+</div>
+
+
+<div class="container text-center d-grid gap-2 col-4 mb-5">
+  <% if user_signed_in? %>
+  <%# owner 専用 button %>
+    <% if current_user.id == @gear.user_id %>
+        <%= link_to "ギアの編集", edit_gear_path(@gear), method: :get, class: "btn btn-primary btn-lg mb-2" %>
+        <span class="fs-5 me-3">or</span>
+        <%= link_to "削除", gear_path(@gear), data: {turbo_method: :delete}, class:"btn btn-danger btn-lg mb-2" %>
+      <% if @gear.order.present?%>
+        <span class="fs-5 me-3">or</span>
+        <%= link_to "予約状況を管理する", "/gears/#{@gear.id}/orders/#{@gear.order.id}/edit", data: {turbo_method: :get}, class:"btn btn-success btn-lg" %>
+      <% end %>
+    <% else %>
+    <%# customer 専用 button %>
+      <div class="container text-center mb-5">
+        <% if @gear.order.present?%>
+        <p class="fs-5">ギアが予約されています</p>
+        <% else %>
+        <%= link_to "レンタルに進む", gear_orders_path(@gear), class: "btn btn-primary btn-lg me-3"%>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 <div class="container mb-5">
-  <table class="table" style="margin: auto;">
+  <table class="table table-bordered" style="margin: auto;">
     <tbody>
       <tr>
         <td>カテゴリー</td>
@@ -62,7 +90,7 @@
       </tr>
       <tr>
         <td>保有者の氏名</td>
-        <td><%= "#{@gear.user.name}さん" %></td>
+        <td><%=link_to "#{@gear.user.name}さん" , user_path(@gear.user) %></td>
       </tr>
     </tbody>
   </table>
@@ -71,3 +99,27 @@
 <div class="container text-center mb-5">
   <p class="fs-5"><%= @gear.info %></p>
 </div>
+
+
+<%# よくある質問　section %>
+<div class="container text-center mb-5">
+  <h1 class="fw-bold mb-2">よくある質問</h1>
+  <p class="text-danger h3 mb-2">FAQ</p>
+  <p class="h4">ご予約について</p>
+</div>
+
+<div class="container text-center mb-5">
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <span class="text-danger fs-3 p-2"><i class="bi bi-question-circle"></i></span>
+    <span class="fs-3 p-2 fw-semibold">2泊3日以上の利用は可能ですか？</span>
+  </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <span class="text-danger fs-3 p-2"><i class="bi bi-chat-dots"></i></i></span>
+    <span class="fs-5 fst-italic p-2">はい。ただし、予約状況によりお貸出できない場合もございます。</span>
+  </div>
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <span class="text-danger fs-3 fst-italic p-2"><i class="bi bi-chat-dots"></i></i></span>
+    <span class="fs-5 fst-italic p-2">2泊3日以上ご希望の場合はGearの保有者のユーザーさんにお問い合わせください。</span>
+  </div>
+</div>
+

@@ -1,0 +1,94 @@
+<% if !user_signed_in? %>
+<div class="container col-10 mb-5">
+  <p class="h1 text-center mt-2 mb-5">Concept</p>
+  <p class="fs-5 text-center"><span class="fs-1 fw-bolder">CampShare</span>は、<span class="fw-bold">キャンプ好きな人たちがつながり、共有するためのプラットフォーム</span>です。</p>
+  <p class="fs-5 text-center"><span class="fw-bold">ブログの投稿から始まり、ユーザー同士でキャンプ用具をレンタルし、副業の機会を提供します。</span></p>
+  <p class="fs-5 text-center">登録して、あなたもコミュニティに参加しませんか？自分のキャンプ旅行を共有し、</p>
+  <p class="fs-5 text-center">他の人の体験を知ることで、新たな冒険が待っています。</p>
+  <p class="fs-5 text-center mb-5"><span class="fw-bold">今すぐ始めましょう。LINEアカウントがあれば、簡単に登録できます。</span></p>
+  <p class="text-center"><%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary mb-5" %></p>
+</div>
+<% end %>
+
+<%# Greeting section %>
+<%= render 'layouts/greeting' %>
+
+<%# RENTAL GEARS section %>
+<p class="h1 text-center mt-2 mb-5">Rental Gears</p>
+
+<% if @gears.empty? %>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">Gear Name</h5>
+          <p class="card-text">Some quick example text to build on the Gear Name and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary mt-3">Detail</a>
+          </div>
+        </div>
+      </div>
+      <!-- 他の例 -->
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div class="row gap-3" style="margin: auto;">
+      <% @gears.each do |gear| %>
+        <div class="card card-effect col-md-4" style="width: 20rem;">
+          <%= image_tag gear.image, class: "gear-img m-3" if gear.image.attached? %>
+          <div class="card-body">
+            <h5 class="card-title"><%= gear.name %></h5>
+            <% if gear.order.present?%>
+            <p class="card-text badge rounded-pill text-bg-danger mb-2">ギアが予約されています</p>
+            <% else %>
+            <p class="card-text badge rounded-pill text-bg-info mb-2">レンタル可能です</p>
+            <% end %>
+            <p class="card-text mb-2"><span>保有者:</span> <%= link_to "#{gear.user.name}さん", user_path(gear.user) %></p>
+            <p class="card-text mb-2"><span>日帰りプラン:</span> <%= "#{gear.price_1}円" %></p>
+            <p class="card-text mb-2"><span>1泊2日プラン:</span> <%= "#{gear.price_2}円" %></p>
+            <p class="card-text mb-3"><span>2泊3日プラン:</span> <%= "#{gear.price_3}円" %></p>
+            <p class="ml-5"><%= link_to "Show", gear_path(gear), class: "btn btn-success mt-2" %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%# BLOG section %>
+<p class="h1 text-center mt-2 mb-5">Blogs</p>
+
+<% if @blogs.empty? %>
+  <div class="container mb-5">
+    <div id="blogs">
+      <div class="card card-effect w-100 mb-5">
+        <div class="card-body d-flex justify-content-between">
+          <p class="card-text me-3">当ブログ「CampShare」はキャンプ・アウトドア関係の商品レビューや、キャンプで役立つ小ネタ、キャンプ飯のレシピを中心としたブログです。キャンプ体験を投稿してね！</p>
+          <p class="ml-5"><%= link_to "Show", "#", class: "btn btn-success mt-2" %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+    <div id="blogs">
+      <% @blogs.each do |blog| %>
+        <div class="row">
+          <div class="col">
+            <div class="card card-effect w-100">
+              <div class="card-body d-flex justify-content-between">
+                <h5 class="card-title">
+                  Blog Title: <%= blog.title %><br><br>
+                  <%= link_to "by #{blog.user.name}", user_path(blog.user) %>
+                </h5>
+                <p class="ml-5"><%= link_to "Show", blog, class: "btn btn-success mt-2" %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

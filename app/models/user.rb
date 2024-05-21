@@ -1,14 +1,24 @@
 class User < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
+
   validates :name, presence: true
+  validates :phone_number, format: { with: /\A\d{10,11}\z/ }, allow_blank: true
+
   has_many :blogs
   has_many :comments
   has_many :gears
   has_many :orders
+  has_one_attached :profile_image
+  belongs_to :prefecture
+  belongs_to :contact_time
+
+  attr_accessor :privacy_policy
+  validates :privacy_policy, acceptance: { message: 'を確認し、同意してください' }
 
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
