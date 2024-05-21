@@ -35,3 +35,16 @@ trix-editor {
   max-height: 20em;
   overflow-y: auto;
 }
+
+trix-toolbar {
+  .trix-button-row {
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+  .trix-button-group:not(:first-child) {
+    margin-left: 0;
+  }
+  .trix-button-group {
+    margin-right: 1.5vw;
+  }
+}
