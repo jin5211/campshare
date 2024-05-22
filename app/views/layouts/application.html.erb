@@ -23,6 +23,7 @@
           <% if user_signed_in? %>
           <div class="nav__right">
             <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
+            <%= link_to "MyPage", user_path(current_user), class: :nav__btn %>
             <%= link_to "Home", root_path, class: :nav__btn %>
             <%= link_to "NewBlog", new_blog_path, class: :nav__btn %>
             <%= link_to "NewGear", new_gear_path, class: :nav__btn %>
