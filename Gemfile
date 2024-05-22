@@ -99,4 +99,4 @@ gem 'gon'
 
 gem 'mini_racer'
 
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 4.1.20'
