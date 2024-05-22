@@ -47,17 +47,22 @@ class OrderReservation
       parsed_start_date = Date.parse(start_date) rescue nil
       if parsed_start_date && parsed_start_date < Date.today + 8.days
         errors.add(:start_date, "レンタルは1週間後以降を選択してください")
+        flash[:alert] = "レンタルは1週間後以降を選択してください"
       end
     end
   end
 
-  # 返却日がレンタルレンタル開始日から2日以内であることのバリデーション
+  # 返却日がレンタル開始日以降であることのバリデーション（日帰りプランも考慮）
   def validate_end_date_within_range
     if start_date.present? && end_date.present?
       parsed_start_date = Date.parse(start_date) rescue nil
       parsed_end_date = Date.parse(end_date) rescue nil
-      if parsed_start_date && parsed_end_date && (parsed_end_date - parsed_start_date).to_i > 2
-        errors.add(:end_date, "返却日はレンタル開始日から2日以内を選択してください")
+
+      if parsed_start_date && parsed_end_date
+        if parsed_end_date < parsed_start_date
+          errors.add(:end_date, "返却日はレンタル開始日以降を選択してください")
+          flash[:alert] = "返却日はレンタル開始日以降を選択してください"
+        end
       end
     end
   end
