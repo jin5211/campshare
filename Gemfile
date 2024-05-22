@@ -98,3 +98,5 @@ gem 'payjp'
 gem 'gon'
 
 gem 'mini_racer'
+
+gem 'uglifier', '>= 1.3.0'
