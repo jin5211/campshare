@@ -6,8 +6,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script type="text/javascript" src="https://js.pay.jp/v2/pay.js"></script>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'actiontext', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/dist/css/bootstrap-datepicker.min.css">
