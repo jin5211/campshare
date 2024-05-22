@@ -1,7 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.configure do |env|
+    env.js_compressor  = :uglifier # or :closure, :yui
+    env.css_compressor = :sass   # or :yui
+  end
   config.assets.compile = false
   config.assets.digest = true
 
