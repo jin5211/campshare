@@ -1,9 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.compile = false
   config.assets.digest = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
