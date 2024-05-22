@@ -98,3 +98,5 @@ gem 'date_validator'
 gem 'payjp'
 
 gem 'gon'
+
+gem 'uglifier', '>= 1.3.0'
