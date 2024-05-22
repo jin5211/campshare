@@ -33,6 +33,14 @@ function plan() {
     // 入力された返却日を取得
     const endDate = new Date(endDateInput.value);
 
+    // レンタル開始日が未選択の場合は警告を表示して処理を中断
+    if (!startDateInput.value) {
+      alert('レンタル開始日を先に選択してください。');
+      endDateInput.value = ''; // 入力値をクリア
+      endDateInput.focus(); // フォーカスを元に戻す
+      return;
+    }
+
     // 終了日が開始日より前かどうかチェック
     if (endDate < startDate) {
       alert('終了日は開始日以降を選択してください。'); // 終了日が開始日より前の場合は警告を表示
@@ -72,7 +80,7 @@ function plan() {
         document.getElementById("selected-price").innerHTML = price1.innerHTML;
         document.getElementById("price-parameter").value = price1Value.innerHTML;
         caution.innerHTML = '';
-      } else if ( diffDays === 1 ) { // 1泊2日プランの場合
+      } else if (diffDays === 1) { // 1泊2日プランの場合
         document.getElementById("selected-plan").innerHTML = plan2.innerHTML;
         document.getElementById("selected-price").innerHTML = price2.innerHTML;
         document.getElementById("price-parameter").value = price2Value.innerHTML;
@@ -80,10 +88,10 @@ function plan() {
       } else { // 2泊3日プランの場合
         document.getElementById("selected-plan").innerHTML = plan3.innerHTML;
         document.getElementById("selected-price").innerHTML = price3.innerHTML;
-        document.getElementById("price-parameter").value= price3Value.innerHTML;
+        document.getElementById("price-parameter").value = price3Value.innerHTML;
         caution.innerHTML = '';
-      };
       }
+    }
   }
 }
 
