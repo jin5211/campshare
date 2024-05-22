@@ -96,3 +96,5 @@ gem 'date_validator'
 gem 'payjp'
 
 gem 'gon'
+
+gem 'mini_racer'
