@@ -100,3 +100,7 @@ gem 'gon'
 gem 'mini_racer'
 
 gem 'uglifier', '>= 4.1.20'
+
+gem "aws-sdk-s3", require: false
+
+gem 'webpacker'

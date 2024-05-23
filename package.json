@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@rails/webpacker": "5.4.4",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "license": "MIT"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
+    "@babel/preset-env": "^7.24.5",
+    "webpack-dev-server": "^3",
+    "license": "MIT"
+  }
+}
