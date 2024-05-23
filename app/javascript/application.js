@@ -6,7 +6,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 // import "trix"
-// import "@rails/actiontext"
+import "@rails/actiontext"
 import "commission"
 import "plan"
 import "card"
