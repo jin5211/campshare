@@ -1,11 +1,18 @@
 <div class="container">
   <div class="gears-sell-main container">
     <h2 class="gears-sell-title">ギアの情報を入力</h2>
-    <%= form_with model:@gear, url: gears_path, local: true do |f| %>
+    <%= form_with model:@gear, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <% if @gear.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(@gear.errors.count, "error") %> prohibited this gear from being saved:</h2>
+        <ul>
+          <% @gear.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <%# ギア画像 %>
     <div class="img-upload">
