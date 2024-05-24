@@ -73,6 +73,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn', '6.1.0'
 end
 
 gem 'bootstrap', '~> 5.2.3'

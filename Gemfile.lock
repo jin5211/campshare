@@ -171,6 +171,7 @@ GEM
     json (2.7.2)
     jwt (2.8.1)
       base64
+    kgio (2.11.4)
     libv8-node (21.7.2.0-x86_64-darwin)
     libv8-node (21.7.2.0-x86_64-linux)
     loofah (2.22.0)
@@ -280,6 +281,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    raindrops (0.20.1)
     rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
@@ -338,6 +340,9 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unicorn (6.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
     uri (0.13.0)
     version_gem (1.1.4)
     warden (1.2.9)
@@ -395,6 +400,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   uglifier (>= 4.1.20)
+  unicorn (= 6.1.0)
   web-console
   webdrivers
 
