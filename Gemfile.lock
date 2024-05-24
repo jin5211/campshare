@@ -237,7 +237,6 @@ GEM
     orm_adapter (0.5.0)
     payjp (0.0.15)
       rest-client (~> 2.0)
-    pg (1.5.6)
     popper_js (2.11.8)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -390,7 +389,6 @@ DEPENDENCIES
   omniauth-line
   omniauth-rails_csrf_protection
   payjp
-  pg
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.0)
