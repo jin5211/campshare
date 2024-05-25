@@ -20,8 +20,9 @@ test:
 
 production:
   <<: *default
-  adapter: mysql2
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: campshare_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
