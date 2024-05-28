@@ -17,8 +17,10 @@ class User < ApplicationRecord
   belongs_to :prefecture
   belongs_to :contact_time
 
-  attr_accessor :privacy_policy
-  validates :privacy_policy, acceptance: { message: 'を確認し、同意してください' }
+  # Remove the attr_accessor for privacy_policy
+  # attr_accessor :privacy_policy
+
+  validates :privacy_policy, acceptance: { accept: true, message: 'を確認し、同意してください' }
 
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first

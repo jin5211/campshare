@@ -1,149 +1,155 @@
-
 <div class="container w-70">
   <h2 class="page-heading fw-bold text-center">新規ユーザー登録</h2>
   <!-- エラーメッセージの表示 -->
-    <div class="container mb-5">
-      <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
+  <div class="container mb-5">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
-    <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 
-    <%# 注意書き %>
-    <div class="container mb-3">
-      <p class="text-primary fw-semibold text-center fst-italic">最下の「Lineアカウントでユーザー登録」を押すと、何も入力せずに簡単にユーザー登録ができます。</p>
-    </div>
-    <%# 注意書き %>
+  <%# 注意書き %>
+  <div class="container mb-3">
+    <p class="text-primary fw-semibold text-center fst-italic">最下の「Lineアカウントでユーザー登録」を押すと、何も入力せずに簡単にユーザー登録ができます。</p>
+  </div>
+  <%# 注意書き %>
 
-    <%# 注意書き %>
-    <div class="container text-center mb-5 d">
-      <p class="text-primary fw-semibold text-center fst-italic d-inline">LINEアカウントでのユーザー登録を希望されない方の場合は、メールアドレス、パスワードとユーザー名が必須となります。</p>
-      <span class="badge text-bg-danger d-inline">必須</span><br />
-    </div>
-    <%# 注意書き %>
+  <%# 注意書き %>
+  <div class="container text-center mb-5 d">
+    <p class="text-primary fw-semibold text-center fst-italic d-inline">LINEアカウントでのユーザー登録を希望されない方の場合は、メールアドレス、パスワードとユーザー名が必須となります。</p>
+    <span class="badge text-bg-danger d-inline">必須</span><br />
+  </div>
+  <%# 注意書き %>
 
-    <%# メールアドレス %>
-    <div class="field mb-3">
-      <%= f.label :email, "メールアドレス" , class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
-      <%= f.email_field :email, class: 'form-control', id:"user_email", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
-    </div>
-    <%# メールアドレス %>
+  <%# メールアドレス %>
+  <div class="field mb-3">
+    <%= f.label :email, "メールアドレス", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
+    <%= f.email_field :email, class: 'form-control', id:"user_email", placeholder: "name@example.com", autofocus: true, autocomplete: "email" %>
+  </div>
+  <%# メールアドレス %>
 
-    <%# パスワード %>
-    <div class="field mb-3">
-      <%= f.label :password, "パスワード（6文字以上）", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
-      <%= f.password_field :password, class: 'form-control', id:"user_password", placeholder: "Password",autocomplete: "new-password" %>
-    </div>
-    <%# パスワード %>
+  <%# パスワード %>
+  <div class="field mb-3">
+    <%= f.label :password, "パスワード（6文字以上）", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
+    <%= f.password_field :password, class: 'form-control', id:"user_password", placeholder: "Password",autocomplete: "new-password" %>
+  </div>
+  <%# パスワード %>
 
-    <%# パスワード再入力 %>
-    <div class="field mb-3">
-      <%= f.label :password_confirmation, "パスワード再入力", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
-      <%= f.password_field :password_confirmation, class: 'form-control',id:"user_password_confirmation", placeholder: "Password Confirmation", autocomplete: "new-password" %>
-    </div>
-    <%# パスワード再入力 %>
+  <%# パスワード再入力 %>
+  <div class="field mb-3">
+    <%= f.label :password_confirmation, "パスワード再入力", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
+    <%= f.password_field :password_confirmation, class: 'form-control',id:"user_password_confirmation", placeholder: "Password Confirmation", autocomplete: "new-password" %>
+  </div>
+  <%# パスワード再入力 %>
 
-    <%# ユーザー名 %>
-    <div class="field mb-3">
-      <%= f.label :name, "ユーザー名", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
-      <%= f.text_field :name, class: 'form-control mb-5', id:"user_name", placeholder: "Name"%>
-    </div>
-    <%# ユーザー名 %>
+  <%# ユーザー名 %>
+  <div class="field mb-3">
+    <%= f.label :name, "ユーザー名", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
+    <%= f.text_field :name, class: 'form-control mb-5', id:"user_name", placeholder: "Name"%>
+  </div>
+  <%# ユーザー名 %>
 
-    <%# 注意書き %>
-    <div class="container mb-5">
+  <%# 注意書き %>
+  <div class="container mb-5">
+    <span class="badge text-bg-info">任意</span>
+    <p class="text-primary fw-semibold fst-italic">下記の情報はユーザー登録する時点では入力任意ではございますが、レンタル機能の使用する際に必須となります。</p>
+    <p class="text-primary fw-semibold fst-italic">ユーザー登録完了したときでも、ご自身のプロフィル編集にて随時追加可能です。</p>
+    <p class="text-primary fw-semibold fst-italic">ユーザー同士で信頼性を高め、安全かつスムーズな取引が可能とするためです。</p>
+  </div>
+  <%# 注意書き %>
+
+  <%# プロフィール画像 %>
+  <div class="img-upload">
+    <div class="weight-bold-text">
+      プロフィール画像
       <span class="badge text-bg-info">任意</span>
-      <p class="text-primary fw-semibold fst-italic">下記の情報はユーザー登録する時点では入力任意ではございますが、レンタル機能の使用する際に必須となります。</p>
-      <p class="text-primary fw-semibold fst-italic">ユーザー登録完了したときでも、ご自身のプロフィル編集にて随時追加可能です。</p>
-      <p class="text-primary fw-semibold fst-italic">ユーザー同士で信頼性を高め、安全かつスムーズな取引が可能とするためです。</p>
     </div>
-    <%# 注意書き %>
+    <div class="click-upload">
+      <p>
+        クリックしてファイルをアップロード
+      </p>
+      <%= f.file_field :profile_image, id:"profile-image" %>
+    </div>
+  </div>
+  <%# プロフィール画像 %>
 
-    <%# プロフィール画像 %>
-    <div class="img-upload">
-      <div class="weight-bold-text">
-        プロフィール画像
-        <span class="badge text-bg-info">任意</span>
-      </div>
-      <div class="click-upload">
-        <p>
-          クリックしてファイルをアップロード
-        </p>
-        <%= f.file_field :profile_image, id:"profile-image" %>
-      </div>
-    </div>
-    <%# プロフィール画像 %>
+  <%# 都道府県名 %>
+  <div class="field mb-3">
+    <%= f.label :prefecture_id, "地域", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+  </div>
+  <%# 都道府県名 %>
 
-    <%# 都道府県名 %>
-    <div class="field mb-3">
-      <%= f.label :prefecture_id, "地域", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
-      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
-    </div>
-    <%# 都道府県名 %>
+  <%# ギアの受け取り可能な住所 %>
+  <div class="field mb-5">
+    <%= f.label :address, "レンタルギアの受け取り可能な住所", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+    <%= f.text_field :address, class: 'form-control mb-3', id:"user_address", placeholder: "例）〒123-4567 東京都板橋区青山1-1-1"%>
+  </div>
+  <%# ギアの受け取り可能な住所%>
 
-    <%# ギアの受け取り可能な住所 %>
-    <div class="field mb-5">
-      <%= f.label :address, "レンタルギアの受け取り可能な住所", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
-      <%= f.text_field :address, class: 'form-control mb-3', id:"user_name", placeholder: "例）〒123-4567 東京都板橋区青山1-1-1"%>
-    </div>
-    <%# ギアの受け取り可能な住所%>
+  <%# 連絡可能電話番号 %>
+  <div class="field mb-5">
+    <%= f.label :phone_number, "電話番号", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+    <%= f.text_field :phone_number, class: 'form-control', id:"user_phone_number", placeholder:"例）09012345678",maxlength:"11" %>
+  </div>
+  <%# 連絡可能電話番号 %>
 
-    <%# 連絡可能電話番号 %>
-    <div class="field mb-5">
-      <%= f.label :phone_number, "電話番号", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
-      <%= f.text_field :phone_number, class: 'form-control', id:"user_name", placeholder:"例）09012345678",maxlength:"11" %>
-    </div>
-    <%# 連絡可能電話番号 %>
+  <%# 連絡可能な時間帯 %>
+  <div class="field mb-5">
+    <%= f.label :contact_time, "連絡可能な時間帯", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+    <%= f.collection_select(:contact_time_id, ContactTime.all, :id, :name, {}, {class:"select-box", id:"contact-time"}) %>
+  </div>
+  <%# 連絡可能な時間帯 %>
 
-    <%# 連絡可能な時間帯 %>
-    <div class="field mb-5">
-      <%= f.label :contact_time, "連絡可能な時間帯", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
-      <%= f.collection_select(:contact_time_id, ContactTime.all, :id, :name, {}, {class:"select-box", id:"contact-time"}) %>
-    </div>
-    <%# 連絡可能な時間帯 %>
+  <%# 連絡可能な時間帯でその他を選んだ方記入 %>
+  <div class="field mb-5">
+    <%= f.label :contact_time_another, "連絡可能な時間帯で「その他」を選択した方はここに記入してください", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+    <%= f.text_area :contact_time_another, class: 'form-control', rows: 3, id:"user_contact_time_another", placeholder:"例）平日は仕事のため連絡取れない可能性があります。土日祝日であれば10:00 AM から 8:00 PMまで連絡可能です。" %>
+  </div>
+  <%# 連絡可能な時間帯でその他を選んだ方記入 %>
 
-    <%# 連絡可能な時間帯でその他を選んだ方記入 %>
-    <div class="field mb-5">
-      <%= f.label :contact_time_another, "連絡可能な時間帯で「その他」を選択した方はここに記入してください", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
-      <%= f.text_area :contact_time_another, class: 'form-control', rows: 3, id:"user_name", placeholder:"例）平日は仕事のため連絡取れない可能性があります。土日祝日であれば10:00 AM から 8:00 PMまで連絡可能です。" %>
-    </div>
-    <%# 連絡可能な時間帯でその他を選んだ方記入 %>
+  <%# 自己紹介 %>
+  <div class="field mb-5">
+    <%= f.label :profile, "自己紹介", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+    <%= f.text_area :profile, class: 'form-control mb-5', rows: 10, id:"user_profile", placeholder: "はじめまして！キャンプ太郎です。キャンプ歴5年のソロキャンパーです。富士山麓のキャンプ場で焚き火や料理、DIYを楽しんでいます。このブログでは、キャンプの魅力を多くの人に伝えたいと思っています。" %>
+  </div>
+  <%# 自己紹介 %>
 
-    <%# 自己紹介 %>
-    <div class="field mb-5">
-      <%= f.label :profile, "自己紹介", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
-      <%= f.text_area :profile, class: 'form-control mb-5', rows: 10, id:"user_profile", placeholder: "はじめまして！キャンプ太郎です。キャンプ歴5年のソロキャンパーです。富士山麓のキャンプ場で焚き火や料理、DIYを楽しんでいます。このブログでは、キャンプの魅力を多くの人に伝えたいと思っています。" %>
-    </div>
-    <%# 自己紹介 %>
+  <%# プライバシーポリシーへのリンクと同意チェックボックス %>
+  <div class="field mb-5 text-center">
+    <%= f.check_box :privacy_policy, class: "form-check-input", id: "privacy_policy" %>
+    <%= f.label :privacy_policy, "プライバシーポリシーに同意します", class: "form-check-label" %>
+    <%= link_to "プライバシーポリシーを読む", privacy_policy_path, target: "_blank", class: "ms-2 text-primary fw-semibold text-decoration-underline" %>
+  </div>
+  <%# プライバシーポリシーへのリンクと同意チェックボックス %>
 
-    <%# プライバシーポリシーへのリンクと同意チェックボックス %>
-    <div class="field mb-5 text-center">
-      <%= f.check_box :privacy_policy, class: "form-check-input", id: "privacy_policy" %>
-      <%= f.label :privacy_policy, "プライバシーポリシーに同意します", class: "form-check-label" %> 
-      <%= link_to "プライバシーポリシーを読む", privacy_policy_path, target: "_blank", class: "ms-2 text-primary fw-semibold text-decoration-underline" %>
-    </div>
-    <%# プライバシーポリシーへのリンクと同意チェックボックス %>
-
-    <%# 登録ボタン %>
-    <div class="text-center mb-3">
-      <%= f.submit "新規登録", class: :form__btn  %>
-    </div>
-    <%# 登録ボタン %>
+  <%# 登録ボタン %>
+  <div class="text-center mb-3">
+    <%= f.submit "新規登録", class: :form__btn  %>
+  </div>
+  <%# 登録ボタン %>
   <% end %>
 
   <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <div class="text-center">
-        <%= button_to "#{OmniAuth::Utils.camelize(provider)}アカウントで登録", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: :form__btn__line %><br />
-      </div>
-    <% end %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <div class="text-center">
+      <%= button_to "#{OmniAuth::Utils.camelize(provider)}アカウントで登録",
+                    omniauth_authorize_path(resource_name, provider, privacy_policy: 1),
+                    data: { turbo: false },
+                    class: :form__btn__line,
+                    id: "omniauth-button-#{provider}" %><br />
+    </div>
   <% end %>
+  <% end %>
+
 </div>
+
+
