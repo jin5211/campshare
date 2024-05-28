@@ -8,7 +8,7 @@ CampShareは、キャンプ好きな人たちがつながり、共有するた�
 [CampShare](http://18.182.125.10/)
 
 ## BASIC認証
-- ID: Admin
+- ID: admin
 - PASSWORD: 1234
 
 ## テスト用アカウント
