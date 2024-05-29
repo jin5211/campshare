@@ -18,33 +18,47 @@
   </head>
 
   <body>
-    <header class="header navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
-      <div class="inner">
-        <div class="nav">
-          <div class="nav__left">
-            <%= link_to "CampShare" , root_path , class: :logo %>
-          </div>
+    <nav class="navbar sticky-top navbar-expand-lg bg-dark border-bottom border-bottom-dark mb-5" data-bs-theme="dark">
+      <div class="container-lg">
+      <%= link_to "CampShare" , root_path , class:"navbar-brand text-white fs-2" %>
+      <button class="navbar-toggler bg-body ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 ms-auto my-auto">
           <% if user_signed_in? %>
-          <div class="nav__right">
-            <%= link_to "ログアウト", destroy_user_session_path, class: :nav__logout , data: { turbo_method: :delete }%>
-            <%= link_to "MyPage", user_path(current_user), class: :nav__btn %>
-            <%= link_to "Home", root_path, class: :nav__btn %>
-            <%= link_to "NewBlog", new_blog_path, class: :nav__btn %>
-            <%= link_to "NewGear", new_gear_path, class: :nav__btn %>
-          </div>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link active text-white", data: { turbo_method: :delete }%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "MyPage", user_path(current_user), class: "nav-link active text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link active text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "NewBlog", new_blog_path, class: "nav-link active text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "NewGear", new_gear_path, class: "nav-link active text-white" %>
+          </li>
           <% else %>
-          <div class="nav__right">
-            <%= link_to "Home", root_path, class: :nav__btn %>
-            <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
-            <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
-          </div>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link active text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link active text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link active text-white" %>
+          </li>
           <% end %>
-        </div>
+        </ul>
       </div>
-    </header>
+    </nav>
 
 
-    <div class="container-fluid main col-11 overflow-auto">
+    <div class="container-lg main mt-auto overflow-auto">
 
       <p style="color: green"><%= notice %></p>
       <%= yield %>
@@ -53,8 +67,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
     <footer class="container-fluid footer text-center">
-      <p class="copyright d-inline">Copyright © CampShare All rights reserved.</p>
-      <%= link_to "プライバシーポリシーを読む", privacy_policy_path, target: "_blank", class: "ms-2 text-primary fw-semibold text-decoration-underline d-inline" %>
+      <p class="copyright d-inline">Copyright © CampShare All rights reserved.</p><br>
+      <%= link_to "プライバシーポリシー", privacy_policy_path, target: "_blank", class: "ms-2 text-white d-inline" %>
     </footer>
   </body>
 </html>
