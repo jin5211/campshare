@@ -12,7 +12,7 @@
         <div class="img-upload">
           <div class="weight-bold-text">
             プロフィール画像
-            <span class="badge text-bg-info">任意</span>
+            <span class="badge text-bg-danger">必須</span>
           </div>
           <div class="click-upload">
             <p>
@@ -32,7 +32,7 @@
 
         <%# 都道府県名 %>
         <div class="field mb-3">
-          <%= f.label :prefecture_id, "地域", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+          <%= f.label :prefecture_id, "地域", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
           <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
         </div>
         <%# 都道府県名 %>
@@ -46,21 +46,21 @@
 
         <%# ギアの受け取り可能な住所 %>
         <div class="field mb-5">
-          <%= f.label :address, "レンタルギアの受け取り可能な住所", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br />
+          <%= f.label :address, "レンタルギアの受け取り可能な住所", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br />
           <%= f.text_field :address, class: 'form-control mb-3', id:"user_name", placeholder: "例）〒123-4567 東京都板橋区青山1-1-1"%>
         </div>
         <%# ギアの受け取り可能な住所%>
 
         <%# 連絡可能電話番号 %>
         <div class="field mb-5">
-          <%= f.label :phone_number, "電話番号", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+          <%= f.label :phone_number, "電話番号", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br/>
           <%= f.text_field :phone_number, class: 'form-control', id:"user_name", placeholder:"例）09012345678",maxlength:"11" %>
         </div>
         <%# 連絡可能電話番号 %>
 
         <%# 連絡可能な時間帯 %>
         <div class="field mb-5">
-          <%= f.label :contact_time, "連絡可能な時間帯", class: "form-label me-2" %><span class="badge text-bg-info">任意</span><br/>
+          <%= f.label :contact_time, "連絡可能な時間帯", class: "form-label me-2" %><span class="badge text-bg-danger">必須</span><br/>
           <%= f.collection_select(:contact_time_id, ContactTime.all, :id, :name, {}, {class:"select-box", id:"contact-time"}) %>
         </div>
         <%# 連絡可能な時間帯 %>
