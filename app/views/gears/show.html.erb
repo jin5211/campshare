@@ -53,26 +53,24 @@
 </div>
 
 
-<div class="container text-center d-grid gap-2 col-4 mb-5">
+<div class="container-fluid text-center d-grid gap-2 mb-5">
   <% if user_signed_in? %>
   <%# owner 専用 button %>
     <% if current_user.id == @gear.user_id %>
-        <%= link_to "ギアの編集", edit_gear_path(@gear), method: :get, class: "btn btn-primary btn-lg mb-2" %>
+        <%= link_to "ギアの編集", edit_gear_path(@gear), method: :get, class: "btn btn-primary btn-lg col-6 mx-auto" %>
         <span class="fs-5 me-3">or</span>
-        <%= link_to "削除", gear_path(@gear), data: {turbo_method: :delete}, class:"btn btn-danger btn-lg mb-2" %>
+        <%= link_to "削除", gear_path(@gear), data: {turbo_method: :delete}, class:"btn btn-danger btn-lg col-5 mx-auto" %>
       <% if @gear.order.present?%>
         <span class="fs-5 me-3">or</span>
-        <%= link_to "予約状況を管理する", "/gears/#{@gear.id}/orders/#{@gear.order.id}/edit", data: {turbo_method: :get}, class:"btn btn-success btn-lg" %>
+        <%= link_to "予約状況を管理する", "/gears/#{@gear.id}/orders/#{@gear.order.id}/edit", data: {turbo_method: :get}, class:"btn btn-success btn-lg col-6 mx-auto" %>
       <% end %>
     <% else %>
     <%# customer 専用 button %>
-      <div class="container text-center mb-5">
-        <% if @gear.order.present?%>
+      <% if @gear.order.present?%>
         <p class="fs-5">ギアが予約されています</p>
-        <% else %>
-        <%= link_to "レンタルに進む", gear_orders_path(@gear), class: "btn btn-primary btn-lg me-3"%>
-        <% end %>
-      </div>
+      <% else %>
+        <%= link_to "レンタルに進む", gear_orders_path(@gear), class: "btn btn-primary btn-lg col-7 mx-auto"%>
+      <% end %>
     <% end %>
   <% end %>
 </div>
