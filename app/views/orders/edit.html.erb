@@ -49,8 +49,8 @@
 <%# owner 専用 button %>
   <% if current_user.id == @gear.user_id %>
     <% if @gear.order.present?%>
-    <div class="container text-center d-grid gap-2 col-4 mb-5">
-      <%= link_to "返却済みにする", "/gears/#{@gear.id}/orders/#{@gear.order.id}", data: {turbo_method: :delete}, class:"btn btn-danger btn-lg" %>
+    <div class="container text-center d-grid mb-5">
+      <%= link_to "返却済みにする", "/gears/#{@gear.id}/orders/#{@gear.order.id}", data: {turbo_method: :delete}, class:"btn btn-danger btn-lg mx-auto" %>
     </div>
     <% end %>
   <% end %>
