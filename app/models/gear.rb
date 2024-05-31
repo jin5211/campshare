@@ -12,6 +12,7 @@ class Gear < ApplicationRecord
     model.validates_numericality_of :price_3
   end
 
+  has_rich_text :info
   belongs_to :user
   has_one_attached :image
   has_one    :order
