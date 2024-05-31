@@ -40,7 +40,7 @@
           ギアの説明
           <span class="badge text-bg-danger">必須</span>
         </div>
-        <%= f.text_area :info, class:"gears-text", id:"gear-info", placeholder:"ギアの説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）" ,rows:"7" ,maxlength:"1000" %>
+        <%= f.rich_text_area :info, class: "gear-text form-control mb-5", id:"gear-info", placeholder:"ギアの説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）(追加写真も複数枚添付可能)"  %>
       </div>
     </div>
     <%# /ギア名とギア説明 %>

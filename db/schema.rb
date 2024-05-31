@@ -67,7 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_20_101442) do
 
   create_table "gears", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.text "info", null: false
     t.integer "brand_id", null: false
     t.integer "category_id", null: false
     t.integer "price_1", null: false
