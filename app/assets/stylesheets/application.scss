@@ -596,46 +596,29 @@ a {
 
 // Gears_show
 
-.gear-box-img {
-  width: 100%;
-  max-width: 60vw;
-  height: auto;
-  max-height: 50vh;
-  min-height: 500px;
-  background-color: rgb(205, 202, 202);
-  object-fit: contain;
-}
-
-/* Smaller devices (tablets, 768px and down) */
-@media (max-width: 768px) {
-  .gear-box-img {
-    max-width: 80vw;
-    max-height: 40vh;
-    min-height: 400px;
-  }
-}
-
-/* Small devices (phones, 600px and down) */
-@media (max-width: 600px) {
-  .gear-box-img {
-    max-width: 90vw;
-    max-height: 30vh;
-    min-height: 300px;
-  }
-}
-
+/* 共通スタイル */
+.gear-box-img,
 .gear-box-img-pre {
   width: 100%;
   max-width: 60vw;
   height: auto;
   max-height: 50vh;
   min-height: 500px;
-  background-color: rgba(224, 86, 113, 0.794);
   object-fit: contain;
+}
+
+/* 個別スタイル */
+.gear-box-img {
+  background-color: rgb(205, 202, 202);
+}
+
+.gear-box-img-pre {
+  background-color: rgba(224, 86, 113, 0.794) !important;
 }
 
 /* Smaller devices (tablets, 768px and down) */
 @media (max-width: 768px) {
+  .gear-box-img,
   .gear-box-img-pre {
     max-width: 80vw;
     max-height: 40vh;
@@ -645,6 +628,7 @@ a {
 
 /* Small devices (phones, 600px and down) */
 @media (max-width: 600px) {
+  .gear-box-img,
   .gear-box-img-pre {
     max-width: 90vw;
     max-height: 30vh;
